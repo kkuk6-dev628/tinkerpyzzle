@@ -1,0 +1,34 @@
+
+bonus_fog.png
+size: 310,143
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+bonus_fog_1
+  rotate: true
+  xy: 125, 5
+  size: 136, 104
+  orig: 138, 106
+  offset: 1, 1
+  index: -1
+bonus_fog_2
+  rotate: false
+  xy: 2, 14
+  size: 121, 127
+  orig: 123, 129
+  offset: 1, 1
+  index: -1
+bonus_fog_3
+  rotate: true
+  xy: 231, 33
+  size: 108, 77
+  orig: 110, 79
+  offset: 1, 1
+  index: -1
+star_blue
+  rotate: false
+  xy: 231, 2
+  size: 29, 29
+  orig: 31, 31
+  offset: 1, 1
+  index: -1

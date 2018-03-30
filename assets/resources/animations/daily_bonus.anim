@@ -1,0 +1,119 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "daily_bonus",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 4,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "black_effect_t1": {
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 2,
+              "value": 90
+            },
+            {
+              "frame": 4,
+              "value": 180
+            }
+          ]
+        }
+      },
+      "black_effect_t": {
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 45
+            },
+            {
+              "frame": 2,
+              "value": -45
+            },
+            {
+              "frame": 4,
+              "value": -135
+            }
+          ]
+        }
+      }
+    },
+    "props": {
+      "scaleX": [
+        {
+          "frame": 0,
+          "value": 0.5
+        },
+        {
+          "frame": 0.16666666666666666,
+          "value": 0.8
+        },
+        {
+          "frame": 0.3333333333333333,
+          "value": 1.2
+        },
+        {
+          "frame": 1,
+          "value": 1
+        },
+        {
+          "frame": 2,
+          "value": 1.2
+        },
+        {
+          "frame": 3,
+          "value": 1
+        }
+      ],
+      "scaleY": [
+        {
+          "frame": 0,
+          "value": 0.5
+        },
+        {
+          "frame": 0.16666666666666666,
+          "value": 0.8
+        },
+        {
+          "frame": 0.3333333333333333,
+          "value": 1.2
+        },
+        {
+          "frame": 1,
+          "value": 1
+        },
+        {
+          "frame": 2,
+          "value": 1.2
+        },
+        {
+          "frame": 3,
+          "value": 1
+        }
+      ],
+      "y": [
+        {
+          "frame": 0,
+          "value": 219
+        },
+        {
+          "frame": 0.16666666666666666,
+          "value": 204
+        },
+        {
+          "frame": 1,
+          "value": 86
+        }
+      ]
+    }
+  },
+  "events": []
+}

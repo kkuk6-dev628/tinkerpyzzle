@@ -1,0 +1,55 @@
+
+swirl.png
+size: 188,188
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+fog
+  rotate: false
+  xy: 2, 18
+  size: 157, 168
+  orig: 159, 170
+  offset: 1, 1
+  index: -1
+swirl2_5
+  rotate: false
+  xy: 161, 61
+  size: 18, 18
+  orig: 20, 20
+  offset: 1, 1
+  index: -1
+swirl2_6
+  rotate: false
+  xy: 2, 5
+  size: 11, 11
+  orig: 13, 13
+  offset: 1, 1
+  index: -1
+swirl5_1
+  rotate: true
+  xy: 161, 109
+  size: 27, 16
+  orig: 29, 18
+  offset: 1, 1
+  index: -1
+swirl5_2
+  rotate: true
+  xy: 161, 138
+  size: 27, 20
+  orig: 29, 22
+  offset: 1, 1
+  index: -1
+swirl5_3
+  rotate: false
+  xy: 161, 167
+  size: 25, 19
+  orig: 27, 21
+  offset: 1, 1
+  index: -1
+swirl5_4
+  rotate: true
+  xy: 161, 81
+  size: 26, 16
+  orig: 28, 18
+  offset: 1, 1
+  index: -1

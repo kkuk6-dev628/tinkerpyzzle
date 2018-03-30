@@ -1,0 +1,27 @@
+
+offering_base_crush.png
+size: 322,134
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+gold_navi_1
+  rotate: true
+  xy: 2, 2
+  size: 130, 145
+  orig: 132, 147
+  offset: 1, 1
+  index: -1
+gold_navi_2
+  rotate: false
+  xy: 149, 29
+  size: 100, 103
+  orig: 102, 105
+  offset: 1, 1
+  index: -1
+light
+  rotate: false
+  xy: 251, 62
+  size: 69, 70
+  orig: 71, 72
+  offset: 1, 1
+  index: -1

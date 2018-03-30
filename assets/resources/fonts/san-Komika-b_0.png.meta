@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "9fb28050-4cb3-4b6f-8d4b-b8b3d1903789",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "san-Komika-b_0": {
+      "ver": "1.0.3",
+      "uuid": "3913c68e-6c17-4eb9-9a17-ed489a366714",
+      "rawTextureUuid": "9fb28050-4cb3-4b6f-8d4b-b8b3d1903789",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": 19,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 511,
+      "height": 218,
+      "rawWidth": 512,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

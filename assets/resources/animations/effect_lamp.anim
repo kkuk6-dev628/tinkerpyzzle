@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "effect_bomb_line",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.15,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "03a89d92-fe17-4e66-b6a7-5ce8f4a13ab0"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "d9097ab0-7fa0-4ba1-b28a-f6a0d867e774"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "c2a9f939-7b03-4b85-9a7c-fa07733438fa"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "390daf1c-d73d-4f55-8759-eec25a39e36e"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "6b6ecb7f-199c-4fd7-adcd-f1d312704d2c"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

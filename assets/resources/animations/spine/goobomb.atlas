@@ -1,0 +1,62 @@
+
+goobomb.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_circle
+  rotate: false
+  xy: 2, 112
+  size: 128, 128
+  orig: 130, 130
+  offset: 1, 1
+  index: -1
+goobomb
+  rotate: false
+  xy: 132, 169
+  size: 75, 71
+  orig: 79, 79
+  offset: 2, 4
+  index: -1
+goobomb_0
+  rotate: false
+  xy: 83, 68
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+goobomb_1
+  rotate: false
+  xy: 2, 2
+  size: 53, 27
+  orig: 53, 27
+  offset: 0, 0
+  index: -1
+goobomb_2
+  rotate: false
+  xy: 132, 127
+  size: 31, 40
+  orig: 31, 40
+  offset: 0, 0
+  index: -1
+goobomb_3
+  rotate: true
+  xy: 209, 193
+  size: 47, 24
+  orig: 47, 24
+  offset: 0, 0
+  index: -1
+milk
+  rotate: false
+  xy: 2, 31
+  size: 79, 79
+  orig: 79, 79
+  offset: 0, 0
+  index: -1
+milk_2
+  rotate: false
+  xy: 83, 38
+  size: 28, 28
+  orig: 30, 30
+  offset: 1, 1
+  index: -1

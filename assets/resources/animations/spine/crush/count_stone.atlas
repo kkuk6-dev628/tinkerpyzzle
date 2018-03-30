@@ -1,0 +1,76 @@
+
+count_stone.png
+size: 207,207
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+break_1
+  rotate: false
+  xy: 73, 47
+  size: 31, 28
+  orig: 31, 28
+  offset: 0, 0
+  index: -1
+break_2
+  rotate: false
+  xy: 164, 104
+  size: 26, 29
+  orig: 26, 29
+  offset: 0, 0
+  index: -1
+break_3
+  rotate: true
+  xy: 106, 47
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+break_4
+  rotate: false
+  xy: 132, 105
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+break_5
+  rotate: false
+  xy: 104, 16
+  size: 25, 29
+  orig: 25, 29
+  offset: 0, 0
+  index: -1
+break_6
+  rotate: false
+  xy: 132, 78
+  size: 30, 25
+  orig: 30, 25
+  offset: 0, 0
+  index: -1
+effect_circle
+  rotate: false
+  xy: 2, 77
+  size: 128, 128
+  orig: 130, 130
+  offset: 1, 1
+  index: -1
+effect_sun
+  rotate: false
+  xy: 2, 2
+  size: 69, 73
+  orig: 71, 75
+  offset: 1, 1
+  index: -1
+light
+  rotate: false
+  xy: 132, 135
+  size: 69, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+star_blue
+  rotate: false
+  xy: 73, 16
+  size: 29, 29
+  orig: 32, 32
+  offset: 1, 2
+  index: -1

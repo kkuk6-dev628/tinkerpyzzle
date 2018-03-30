@@ -1,0 +1,62 @@
+
+line_booster.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bomb_x_effect_help1
+  rotate: false
+  xy: 381, 46
+  size: 82, 80
+  orig: 82, 80
+  offset: 0, 0
+  index: -1
+bomb_x_effect_help2
+  rotate: false
+  xy: 296, 46
+  size: 83, 80
+  orig: 83, 80
+  offset: 0, 0
+  index: -1
+bomb_x_effect_help3
+  rotate: false
+  xy: 211, 40
+  size: 83, 86
+  orig: 83, 86
+  offset: 0, 0
+  index: -1
+bomb_x_effect_help4
+  rotate: false
+  xy: 126, 37
+  size: 83, 89
+  orig: 83, 89
+  offset: 0, 0
+  index: -1
+bomb_x_effect_help5
+  rotate: false
+  xy: 2, 2
+  size: 122, 124
+  orig: 122, 124
+  offset: 0, 0
+  index: -1
+bomb_x_effect_help6
+  rotate: false
+  xy: 126, 6
+  size: 28, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+bomb_x_effect_help7
+  rotate: false
+  xy: 538, 85
+  size: 47, 41
+  orig: 47, 41
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 465, 54
+  size: 71, 72
+  orig: 71, 72
+  offset: 0, 0
+  index: -1

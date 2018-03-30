@@ -1,0 +1,27 @@
+
+effect_milk.png
+size: 250,250
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+effect_circle
+  rotate: false
+  xy: 2, 120
+  size: 128, 128
+  orig: 130, 130
+  offset: 1, 1
+  index: -1
+milk_1
+  rotate: false
+  xy: 2, 2
+  size: 118, 116
+  orig: 120, 118
+  offset: 1, 1
+  index: -1
+milk_2
+  rotate: false
+  xy: 132, 220
+  size: 28, 28
+  orig: 30, 30
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,39 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "spin",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.21666666666666667,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "spin1": {
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 0.16666666666666666,
+              "value": -30
+            },
+            {
+              "frame": 0.21666666666666667,
+              "value": 0
+            }
+          ],
+          "anchorY": [
+            {
+              "frame": 0,
+              "value": 0.5
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

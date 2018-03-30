@@ -1,0 +1,118 @@
+
+fox_up.png
+size: 597,597
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+arm_L1
+  rotate: false
+  xy: 218, 10
+  size: 99, 125
+  orig: 101, 127
+  offset: 1, 1
+  index: -1
+arm_L2_1
+  rotate: true
+  xy: 298, 142
+  size: 145, 100
+  orig: 147, 102
+  offset: 1, 1
+  index: -1
+arm_R1
+  rotate: false
+  xy: 438, 60
+  size: 107, 120
+  orig: 109, 122
+  offset: 1, 1
+  index: -1
+arm_R2
+  rotate: false
+  xy: 351, 311
+  size: 131, 118
+  orig: 133, 120
+  offset: 1, 1
+  index: -1
+body
+  rotate: false
+  xy: 187, 399
+  size: 162, 196
+  orig: 164, 198
+  offset: 1, 1
+  index: -1
+eye_L
+  rotate: false
+  xy: 484, 412
+  size: 19, 17
+  orig: 21, 19
+  offset: 1, 1
+  index: -1
+eye_R
+  rotate: false
+  xy: 177, 123
+  size: 15, 12
+  orig: 17, 14
+  offset: 1, 1
+  index: -1
+foo_R3
+  rotate: true
+  xy: 2, 3
+  size: 93, 107
+  orig: 95, 109
+  offset: 1, 1
+  index: -1
+foo_R3 copy
+  rotate: true
+  xy: 111, 2
+  size: 94, 105
+  orig: 96, 107
+  offset: 1, 1
+  index: -1
+foot-R2
+  rotate: true
+  xy: 319, 17
+  size: 123, 117
+  orig: 125, 119
+  offset: 1, 1
+  index: -1
+foot-R2 copy
+  rotate: false
+  xy: 400, 182
+  size: 113, 127
+  orig: 115, 129
+  offset: 1, 1
+  index: -1
+foot_R1
+  rotate: true
+  xy: 187, 289
+  size: 108, 151
+  orig: 110, 153
+  offset: 1, 1
+  index: -1
+foot_R1 copy
+  rotate: false
+  xy: 177, 137
+  size: 119, 150
+  orig: 121, 152
+  offset: 1, 1
+  index: -1
+head
+  rotate: false
+  xy: 351, 431
+  size: 167, 164
+  orig: 169, 166
+  offset: 1, 1
+  index: -1
+wing_L
+  rotate: false
+  xy: 2, 98
+  size: 173, 237
+  orig: 175, 239
+  offset: 1, 1
+  index: -1
+wing_R
+  rotate: false
+  xy: 2, 337
+  size: 183, 258
+  orig: 185, 260
+  offset: 1, 1
+  index: -1

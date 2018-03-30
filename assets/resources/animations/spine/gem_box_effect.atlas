@@ -1,0 +1,34 @@
+
+gem_box_effect.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gem_box
+  rotate: false
+  xy: 397, 87
+  size: 175, 148
+  orig: 175, 148
+  offset: 0, 0
+  index: -1
+gem_box_effect
+  rotate: false
+  xy: 2, 35
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+gem_box_open
+  rotate: false
+  xy: 204, 42
+  size: 191, 193
+  orig: 191, 193
+  offset: 0, 0
+  index: -1
+star_blue1
+  rotate: false
+  xy: 2, 2
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,69 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "door_teleport_small",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 2,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "small_door1/_key": {
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 0.25,
+              "value": -10
+            },
+            {
+              "frame": 0.5833333333333334,
+              "value": 195
+            },
+            {
+              "frame": 0.8333333333333334,
+              "value": 175
+            },
+            {
+              "frame": 1.1666666666666667,
+              "value": 370
+            },
+            {
+              "frame": 1.4166666666666667,
+              "value": 360
+            }
+          ]
+        }
+      },
+      "small_door1": {
+        "props": {
+          "y": [
+            {
+              "frame": 1.6666666666666667,
+              "value": -6
+            },
+            {
+              "frame": 2,
+              "value": 27
+            }
+          ],
+          "scaleY": [
+            {
+              "frame": 1.6666666666666667,
+              "value": 1
+            },
+            {
+              "frame": 2,
+              "value": 0.1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

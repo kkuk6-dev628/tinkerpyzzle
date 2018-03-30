@@ -1,0 +1,50 @@
+{
+"skeleton": { "hash": "Izs3ATdgwaXk87Vsgw+qo9Ag6xY", "spine": "3.6.48", "width": 194, "height": 194, "images": "./images/break/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "light", "parent": "root" },
+	{ "name": "mixture", "parent": "root" }
+],
+"slots": [
+	{ "name": "mixed", "bone": "mixture", "attachment": "mixed" },
+	{ "name": "light", "bone": "light", "attachment": "light" }
+],
+"skins": {
+	"default": {
+		"light": {
+			"light": { "width": 71, "height": 72 }
+		},
+		"mixed": {
+			"mixed": { "width": 194, "height": 194 }
+		}
+	}
+},
+"animations": {
+	"shuffle": {
+		"slots": {
+			"light": {
+				"color": [
+					{ "time": 0, "color": "fafe9278" },
+					{ "time": 0.3333, "color": "fe929278" },
+					{ "time": 0.6667, "color": "a7fe9278" },
+					{ "time": 1, "color": "fbfe9278" }
+				]
+			}
+		},
+		"bones": {
+			"mixture": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.5, "angle": 180 },
+					{ "time": 1, "angle": 0 }
+				]
+			},
+			"light": {
+				"scale": [
+					{ "time": 0, "x": 4, "y": 4 }
+				]
+			}
+		}
+	}
+}
+}

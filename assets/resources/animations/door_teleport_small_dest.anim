@@ -1,0 +1,39 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "door_teleport_small_dest",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.3333333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "small_door2": {
+        "props": {
+          "y": [
+            {
+              "frame": 0,
+              "value": -6
+            },
+            {
+              "frame": 0.3333333333333333,
+              "value": 27
+            }
+          ],
+          "scaleY": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 0.3333333333333333,
+              "value": 0.1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

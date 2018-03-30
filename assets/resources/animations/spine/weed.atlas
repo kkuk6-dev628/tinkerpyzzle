@@ -1,0 +1,55 @@
+
+weed.png
+size: 103,103
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+weed_1
+  rotate: true
+  xy: 69, 46
+  size: 24, 25
+  orig: 26, 27
+  offset: 1, 1
+  index: -1
+weed_2
+  rotate: false
+  xy: 41, 73
+  size: 31, 28
+  orig: 33, 30
+  offset: 1, 1
+  index: -1
+weed_3
+  rotate: false
+  xy: 2, 15
+  size: 27, 26
+  orig: 29, 28
+  offset: 1, 1
+  index: -1
+weed_4
+  rotate: true
+  xy: 37, 49
+  size: 22, 30
+  orig: 24, 32
+  offset: 1, 1
+  index: -1
+weed_5
+  rotate: false
+  xy: 2, 43
+  size: 33, 28
+  orig: 35, 30
+  offset: 1, 1
+  index: -1
+weed_6
+  rotate: false
+  xy: 2, 73
+  size: 37, 28
+  orig: 39, 30
+  offset: 1, 1
+  index: -1
+weed_7
+  rotate: true
+  xy: 74, 72
+  size: 29, 27
+  orig: 31, 29
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,55 @@
+
+effect_mystery1.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fog
+  rotate: false
+  xy: 2, 73
+  size: 159, 170
+  orig: 159, 170
+  offset: 0, 0
+  index: -1
+mystery_1
+  rotate: false
+  xy: 163, 192
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+mystery_2
+  rotate: false
+  xy: 163, 168
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+mystery_2_1
+  rotate: false
+  xy: 163, 222
+  size: 46, 21
+  orig: 46, 21
+  offset: 0, 0
+  index: -1
+mystery_2_2
+  rotate: false
+  xy: 2, 2
+  size: 38, 25
+  orig: 38, 25
+  offset: 0, 0
+  index: -1
+mystery_2_3
+  rotate: false
+  xy: 2, 29
+  size: 39, 42
+  orig: 39, 42
+  offset: 0, 0
+  index: -1
+mystery_2_4
+  rotate: false
+  xy: 43, 51
+  size: 45, 20
+  orig: 45, 20
+  offset: 0, 0
+  index: -1

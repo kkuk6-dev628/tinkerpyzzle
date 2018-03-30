@@ -1,0 +1,41 @@
+
+chains.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chain_1
+  rotate: true
+  xy: 63, 2
+  size: 17, 44
+  orig: 17, 44
+  offset: 0, 0
+  index: -1
+chain_2
+  rotate: false
+  xy: 180, 12
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+chain_3
+  rotate: false
+  xy: 130, 11
+  size: 48, 44
+  orig: 48, 44
+  offset: 0, 0
+  index: -1
+chain_4
+  rotate: false
+  xy: 2, 3
+  size: 59, 52
+  orig: 59, 52
+  offset: 0, 0
+  index: -1
+chain_5
+  rotate: false
+  xy: 63, 21
+  size: 65, 34
+  orig: 65, 34
+  offset: 0, 0
+  index: -1
