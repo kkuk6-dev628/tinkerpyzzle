@@ -337,8 +337,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
@@ -357,6 +355,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 2
@@ -511,8 +513,6 @@
     },
     "duration": 0.1,
     "zoomScale": 0.95,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
@@ -531,6 +531,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 1
@@ -552,7 +556,9 @@
     },
     "isMatchable": true,
     "chainNode": null,
-    "chainAnimNode": null,
+    "chainAnimNode": {
+      "__uuid__": "0da7affb-c035-48d6-9796-5e7ecd3f960c"
+    },
     "isPendingHole": false,
     "_isMoving": false,
     "isChainHold": false,

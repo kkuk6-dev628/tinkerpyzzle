@@ -345,11 +345,13 @@ cc.Class({
 
     findOfferingBaseTarget: function () {
         let coveredGrounds = [];
+        let groundTiles = [];
         for(let i = this._minVisibleRow; i <= this._maxVisibleRow; i++){
             if(this._mapNodesArray[Constants.FiguresLayerName][i]){
                 for(let j = this._minVisibleColumn; j <= this._maxVisibleColumn; j++){
                     let tile = this.getFigureTile(j, i);
                     if(tile && tile instanceof GroundTile){
+                        groundTiles.push({col: j, row: i});
                         if(tile.grassNum > 0 || tile.isWeed){
                             coveredGrounds.push({col: j, row: i});
                         }
@@ -360,8 +362,8 @@ cc.Class({
         if(coveredGrounds.length > 0){
             return coveredGrounds[Math.floor(Math.random() * coveredGrounds.length)];
         }
-        else{
-            return null;
+        else if(groundTiles.length > 0){
+            return groundTiles[Math.floor(Math.random() * groundTiles.length)];
         }
     },
 

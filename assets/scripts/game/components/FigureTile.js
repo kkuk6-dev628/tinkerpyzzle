@@ -563,7 +563,9 @@ const FigureTile = cc.Class({
             milkNode.active = true;
             let anim = milkNode.getChildByName("effect_milk");
             anim.active = true;
-            anim.getComponent(cc.Animation).play("effect_milk");
+            let crushSpine = anim.getComponent('sp.Skeleton');
+            let skeltal = crushSpine.setAnimation(0, 'effect_milk', false);
+            skeltal.timeScale = 2;
 
             this.setVisibleSprite(true);
 
@@ -617,6 +619,7 @@ const FigureTile = cc.Class({
             this.isMilkTile = false;
             this.restoreDefaultFlags();
             milkNode.getChildByName("milk").active = false;
+            this.gooBombNode.active = false;
             setTimeout(() => {
                 milkNode.active = false;
             }, 0.5 * 1000);
