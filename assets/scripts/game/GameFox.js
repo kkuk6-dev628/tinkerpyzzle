@@ -808,8 +808,10 @@ cc.Class({
         this.setGamePage(this._colCurrentPage + 1, this._rowCurrentPage);
         setTimeout(() =>{
             this.showPageMovingAction();
+        }, 1.8 * 1000);
+        setTimeout(() =>{
             this.moveFoxThroughDoor(this._doorTeleportDestPosition);
-        }, 4.1 * 1000)
+        }, 2 * 1000);
     },
 
     moveFoxThroughDoor: function (doorDestPos) {
@@ -988,37 +990,38 @@ cc.Class({
         movingKeyNode.x = this._topKeyPosition.x;
         movingKeyNode.y = this._topKeyPosition.y;
 
-        Global.PendingActions++;
+        // Global.PendingActions++;
 
         movingKeyNode.runAction(cc.sequence(cc.moveTo(1, posOpenKey), cc.removeSelf(true)));
-        let doorNode = this._doorTeleportNode.getChildByName("door");
-        doorNode.runAction(cc.sequence(
-            cc.delayTime(2),
-            cc.spawn(
-                cc.moveBy(1, 0, 45),
-                cc.scaleTo(1, 1, 0.3)
-            ),
-            cc.removeSelf(true),
-            cc.callFunc(this.setGameState, this)
-        ));
-        setTimeout(() =>{
-            openKeyNode.active = true;
-            openKeyNode.runAction(cc.sequence(cc.rotateTo(1, -180), cc.removeSelf(true)));
-        }, 1 * 1000);
+        // let doorNode = this._doorTeleportNode.getChildByName("door");
+        // doorNode.runAction(cc.sequence(
+        //     cc.delayTime(2),
+        //     cc.spawn(
+        //         cc.moveBy(1, 0, 45),
+        //         cc.scaleTo(1, 1, 0.3)
+        //     ),
+        //     cc.removeSelf(true),
+        //     cc.callFunc(this.setGameState, this)
+        // ));
+        // setTimeout(() =>{
+        //     openKeyNode.active = true;
+        //     openKeyNode.runAction(cc.sequence(cc.rotateTo(1, -180), cc.removeSelf(true)));
+        // }, 1 * 1000);
 
         setTimeout(() =>{
             this.playFoxAnimation("right_ready");
-        }, 3 * 1000);
+        }, 1000);
         setTimeout(() =>{
+            // this.setGameState();
             this._foxNode.runAction(cc.moveBy(0.5, Constants.TileSize * 1.5, 0));
-            this.playFoxAnimation("right");
-        }, 3.2 * 1000);
+            this.playFoxAnimation("right_jump");
+        }, 1.25 * 1000);
+        // setTimeout(() =>{
+        //     this.playFoxAnimation("top");
+        // }, 2.0 * 1000);
         setTimeout(() =>{
-            this.playFoxAnimation("top");
-        }, 3.7 * 1000);
-        setTimeout(() =>{
-            this.playFoxAnimation("fox_glad");
-        }, 4.2 * 1000);
+            this.playFoxAnimation("fox_Idle");
+        }, 2.85 * 1000);
 
     },
 

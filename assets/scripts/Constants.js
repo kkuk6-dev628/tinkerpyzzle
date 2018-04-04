@@ -209,9 +209,9 @@ cc.Class({
         },
 
         FoxAnimationTimes: {
-            ready: 0.2,
+            ready: 0.1,
             jump: 0.5,
-            end: 0.5,
+            end: 0.1,
             cry: 1.5
         },
 

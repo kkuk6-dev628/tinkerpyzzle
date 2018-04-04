@@ -1,7 +1,8 @@
 {
-"skeleton": { "hash": "X7wBNW5MtVX+ME0H/hQzZ5FWT4k", "spine": "3.6.48", "width": 130, "height": 79, "images": "./images/break/" },
+"skeleton": { "hash": "fK+bT+qapcoO6mzoKfEN5bFC1Rs", "spine": "3.6.52", "width": 130, "height": 79, "images": "./images/break/" },
 "bones": [
 	{ "name": "root" },
+	{ "name": "bone", "parent": "root" },
 	{ "name": "bonus", "parent": "root" },
 	{ "name": "bonus2", "parent": "root" },
 	{ "name": "bonus3", "parent": "root" },
@@ -13,7 +14,8 @@
 	{ "name": "bonus2", "bone": "bonus2", "attachment": "bonus" },
 	{ "name": "bonus3", "bone": "bonus3", "attachment": "bonus" },
 	{ "name": "bonus4", "bone": "bonus4", "attachment": "bonus" },
-	{ "name": "light", "bone": "light", "attachment": "light" }
+	{ "name": "light", "bone": "light", "attachment": "light" },
+	{ "name": "light_color", "bone": "bone", "attachment": "light_color" }
 ],
 "skins": {
 	"default": {
@@ -31,10 +33,105 @@
 		},
 		"light": {
 			"light": { "x": -0.1, "y": -0.14, "width": 71, "height": 72 }
+		},
+		"light_color": {
+			"light_color": { "width": 71, "height": 72 }
 		}
 	}
 },
 "animations": {
+	"bomb_effect_around": {
+		"slots": {
+			"bonus": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"bonus2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"bonus3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"bonus4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"light": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" },
+					{ "time": 0.6667, "color": "ffffffc3" }
+				]
+			},
+			"light_color": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"light": {
+				"scale": [
+					{ "time": 0, "x": 0.3, "y": 0.3 },
+					{ "time": 0.6667, "x": 1, "y": 1 }
+				]
+			}
+		}
+	},
+	"bomb_effect_lamp_area": {
+		"slots": {
+			"bonus": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"bonus2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"bonus3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"bonus4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"light": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"light_color": {
+				"color": [
+					{ "time": 0, "color": "ffffffc7" },
+					{ "time": 0.3333, "color": "ffffff64" },
+					{ "time": 0.6667, "color": "ffffffc7" }
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6667, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1.2, "y": 1.2, "curve": "stepped" },
+					{ "time": 0.6667, "x": 1.2, "y": 1.2 }
+				]
+			}
+		}
+	},
 	"bonus_effect": {
 		"slots": {
 			"bonus": {
@@ -70,6 +167,11 @@
 				"attachment": [
 					{ "time": 0, "name": "light" }
 				]
+			},
+			"light_color": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
 			}
 		},
 		"bones": {
@@ -103,12 +205,6 @@
 					{ "time": 0.6667, "x": 0.584, "y": 0.562 }
 				]
 			},
-			"light": {
-				"scale": [
-					{ "time": 0, "x": 0.5, "y": 0.5 },
-					{ "time": 0.6667, "x": 0.923, "y": 0.851 }
-				]
-			},
 			"bonus3": {
 				"translate": [
 					{ "time": 0, "x": 0, "y": 0 },
@@ -137,6 +233,12 @@
 						"curve": [ 0.25, 0, 0.75, 1 ]
 					},
 					{ "time": 0.6667, "x": 0.584, "y": 0.562 }
+				]
+			},
+			"light": {
+				"scale": [
+					{ "time": 0, "x": 0.5, "y": 0.5 },
+					{ "time": 0.6667, "x": 0.923, "y": 0.851 }
 				]
 			}
 		}
@@ -185,6 +287,11 @@
 				"attachment": [
 					{ "time": 0, "name": "light" }
 				]
+			},
+			"light_color": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
 			}
 		},
 		"bones": {
@@ -216,12 +323,6 @@
 						"curve": [ 0.25, 0, 0.75, 1 ]
 					},
 					{ "time": 0.6667, "x": 0.584, "y": 0.562 }
-				]
-			},
-			"light": {
-				"scale": [
-					{ "time": 0, "x": 0.5, "y": 0.5 },
-					{ "time": 0.6667, "x": 0.923, "y": 0.851 }
 				]
 			},
 			"bonus3": {
@@ -258,6 +359,12 @@
 						"curve": [ 0.25, 0, 0.75, 1 ]
 					},
 					{ "time": 0.6667, "x": 0.584, "y": 0.562 }
+				]
+			},
+			"light": {
+				"scale": [
+					{ "time": 0, "x": 0.5, "y": 0.5 },
+					{ "time": 0.6667, "x": 0.923, "y": 0.851 }
 				]
 			}
 		}

@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "Izs3ATdgwaXk87Vsgw+qo9Ag6xY", "spine": "3.6.48", "width": 194, "height": 194, "images": "./images/break/" },
+"skeleton": { "hash": "PbO0pwYEv7QFs2RY6nLqdyk7FeM", "spine": "3.6.52", "width": 194, "height": 194, "images": "./images/break/" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "light", "parent": "root" },
@@ -24,10 +24,17 @@
 		"slots": {
 			"light": {
 				"color": [
-					{ "time": 0, "color": "fafe9278" },
+					{ "time": 0, "color": "ffffff78" },
 					{ "time": 0.3333, "color": "fe929278" },
 					{ "time": 0.6667, "color": "a7fe9278" },
-					{ "time": 1, "color": "fbfe9278" }
+					{ "time": 1, "color": "fafe9284" }
+				]
+			},
+			"mixed": {
+				"color": [
+					{ "time": 0, "color": "ffffff95" },
+					{ "time": 0.5, "color": "ffffffff" },
+					{ "time": 1, "color": "ffffff95" }
 				]
 			}
 		},
