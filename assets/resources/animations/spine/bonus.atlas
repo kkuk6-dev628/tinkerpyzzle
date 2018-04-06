@@ -13,14 +13,14 @@ bonus
   index: -1
 light
   rotate: false
-  xy: 207, 9
+  xy: 134, 9
   size: 71, 72
   orig: 71, 72
   offset: 0, 0
   index: -1
 light_color
   rotate: false
-  xy: 134, 9
+  xy: 207, 9
   size: 71, 72
   orig: 71, 72
   offset: 0, 0

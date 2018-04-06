@@ -575,7 +575,7 @@ cc.Class({
         let foxAnimationNode = this._foxNode.getChildByName(nodeName);
         foxAnimationNode.active = true;
         let skeleton = foxAnimationNode.getComponent('sp.Skeleton');
-        let animation = skeleton.setAnimation(0, clipName, false);
+        let animation = skeleton.setAnimation(0, clipName, true);
         animation.loop = true;
         animation.timeScale = 2;
     },

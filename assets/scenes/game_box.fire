@@ -6509,7 +6509,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 22,
+      "width": 25,
       "height": 60
     },
     "_rotationX": 0,
@@ -6775,7 +6775,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40.83,
+      "width": 40,
       "height": 50
     },
     "_rotationX": 0,
@@ -6864,7 +6864,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 110,
+      "width": 111.67,
       "height": 50
     },
     "_rotationX": 0,
@@ -6953,7 +6953,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 89.17,
+      "width": 92.17,
       "height": 50
     },
     "_rotationX": 0,
@@ -7600,7 +7600,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 62,
+      "width": 66,
       "height": 60
     },
     "_rotationX": 0,
@@ -7609,8 +7609,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 48.3,
-      "y": -103.2
+      "x": -186,
+      "y": -103
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7676,9 +7676,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 243,
-      "g": 225,
-      "b": 21,
+      "r": 21,
+      "g": 243,
+      "b": 57,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -7689,7 +7689,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 91,
       "height": 60
     },
     "_rotationX": 0,
@@ -7698,8 +7698,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -62.7,
-      "y": -103.2
+      "x": -283,
+      "y": -103
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7726,7 +7726,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "level:",
+    "_N$string": "level",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -7867,7 +7867,7 @@
     ],
     "_prefab": null,
     "_id": "13CPaycP9DwbPVEypvuFT3",
-    "_opacity": 164.985,
+    "_opacity": 193,
     "_color": {
       "__type__": "cc.Color",
       "r": 10,

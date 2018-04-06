@@ -76,7 +76,7 @@ const Global = cc.Class({
             adsLabel.active = !enableAdsWatch;
             if(!adsAvailable){
                 adsLabel.active = !adsAvailable;
-                adsLabel.getComponent(cc.Label).string = "Network is offline.";
+                adsLabel.getComponent(cc.Label).string = "Please check network.";
             }
             else{
                 adsLabel.getComponent(cc.Label).string = "Try at tomorrow.";
@@ -89,7 +89,7 @@ const Global = cc.Class({
             videoLabel.active = !enableVideoWatch;
             if(!videoAvailable){
                 videoLabel.active = !videoAvailable;
-                videoLabel.getComponent(cc.Label).string = "Network offline";
+                videoLabel.getComponent(cc.Label).string = "Please check network.";
             }
             else{
                 videoLabel.getComponent(cc.Label).string = "Try at tomorrow.";

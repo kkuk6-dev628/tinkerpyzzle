@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "fK+bT+qapcoO6mzoKfEN5bFC1Rs", "spine": "3.6.52", "width": 130, "height": 79, "images": "./images/break/" },
+"skeleton": { "hash": "8AugWSaTtfrnPbez41uAT5dFs2E", "spine": "3.6.52", "width": 130, "height": 79, "images": "./images/break/" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "bone", "parent": "root" },
@@ -77,11 +77,14 @@
 		"bones": {
 			"light": {
 				"scale": [
-					{ "time": 0, "x": 0.3, "y": 0.3 },
-					{ "time": 0.6667, "x": 1, "y": 1 }
+					{ "time": 0, "x": 0.7, "y": 0.7 },
+					{ "time": 0.6667, "x": 1.2, "y": 1.2 }
 				]
 			}
-		}
+		},
+		"drawOrder": [
+			{ "time": 0 }
+		]
 	},
 	"bomb_effect_lamp_area": {
 		"slots": {
@@ -113,8 +116,8 @@
 			"light_color": {
 				"color": [
 					{ "time": 0, "color": "ffffffc7" },
-					{ "time": 0.3333, "color": "ffffff64" },
-					{ "time": 0.6667, "color": "ffffffc7" }
+					{ "time": 1.3333, "color": "ffffff64" },
+					{ "time": 2.6667, "color": "ffffffc7" }
 				]
 			}
 		},
@@ -122,12 +125,12 @@
 			"bone": {
 				"rotate": [
 					{ "time": 0, "angle": 0 },
-					{ "time": 0.3333, "angle": 180 },
-					{ "time": 0.6667, "angle": 0 }
+					{ "time": 1.3333, "angle": 180 },
+					{ "time": 2.6667, "angle": 0 }
 				],
 				"scale": [
 					{ "time": 0, "x": 1.2, "y": 1.2, "curve": "stepped" },
-					{ "time": 0.6667, "x": 1.2, "y": 1.2 }
+					{ "time": 2.6667, "x": 1.2, "y": 1.2 }
 				]
 			}
 		}
