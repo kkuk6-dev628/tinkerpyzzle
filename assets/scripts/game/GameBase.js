@@ -488,7 +488,9 @@ cc.Class({
     start: function () {
         Global.PendingActions = 0;
         this.addPendingAction();
+
         if (Global.PlayingLevel != null && Global.PlayingLevel.levelMap != null) {
+            (cc.sys.isMobile) && Global.sendGAProgressionEvent(ga.EGAProgressionStatus.Start, `level-${Global.PlayingLevel.levelNumber}`, `type-${Global.PlayingLevel.levelType}`);
             this.initAvailableFigures();
             this.initConstants();
             this.loadLevelMap();
@@ -632,6 +634,7 @@ cc.Class({
 
     onFailedDialogClose: function () {
         this.clearAllTimers();
+        (cc.sys.isMobile) && Global.sendGAProgressionEvent(ga.EGAProgressionStatus.Fail, `level-${Global.PlayingLevel.levelNumber}`, `type-${Global.PlayingLevel.levelType}`);
         cc.director.preloadScene("map", ()=>{
             cc.director.loadScene("map");
         });
@@ -988,6 +991,8 @@ cc.Class({
         this._boosterButterflyNode = cc.find("bottom_booster_area/butterfly", this._uiNode);
         let mapMask = this.gameMapNode.parent.getComponent(cc.Mask);
         // mapMask.enabled = false;
+
+        //asd.remove();
 
         this._butterflyAction = cc.sequence([
             cc.scaleTo(0.05, 0.2, 2),
@@ -1500,7 +1505,7 @@ cc.Class({
             this.gameMapNode.runAction(seq);
         }
         else if (this._colPageCount > 1) {
-            actionTime = 0.1 * (this._maxVisibleColumn - this._minVisibleColumn);
+            actionTime = 0.2 * (this._maxVisibleColumn - this._minVisibleColumn);
             let trailAction = new cc.MoveTo(actionTime, cc.p(-this._gameArea.left, this.gameMapNode.y));
             this.addPendingAction();
             let seq = new cc.Sequence(cc.delayTime(0.5), trailAction, cc.callFunc(this.setGameState, this));
@@ -2099,7 +2104,7 @@ cc.Class({
     showRandomBonusAction: function () {
         let randomTile = this.selectRandomTile();
         let loopLimit = 20;
-        while (loopLimit > 0 && !this.isMatchable(randomTile.col, randomTile.row) || this.getFigureTile(randomTile.col, randomTile.row).bonus) {
+        while (loopLimit > 0 && !this.isMatchable(randomTile.col, randomTile.row) || ( this.getFigureTile(randomTile.col, randomTile.row) && this.getFigureTile(randomTile.col, randomTile.row).bonus)) {
             randomTile = this.selectRandomTile();
             loopLimit--;
         }
@@ -2173,6 +2178,8 @@ cc.Class({
             }, 0.2 * 1000);
             return;
         }
+        (cc.sys.isMobile) && Global.sendGAProgressionEvent(ga.EGAProgressionStatus.Complete, `level-${Global.PlayingLevel.levelNumber}`, `type-${Global.PlayingLevel.levelType}`, `score ${Global.PlayingLevel.score}`);
+
         this.saveResult();
         this._popupMaskNode.active = true;
         let finishDlgNode = cc.find("Canvas/ui_nodes/popups/finish_popup");
@@ -6232,6 +6239,9 @@ cc.Class({
     onExitButtonClicked: function () {
         Global.PendingActions = 0;
         this.clearAllTimers();
+
+        (cc.sys.isMobile) && Global.sendGAProgressionEvent(ga.EGAProgressionStatus.Fail, `level-${Global.PlayingLevel.levelNumber}`, `type-${Global.PlayingLevel.levelType}`, `Exit`);
+
         cc.director.loadScene("map");
     },
 

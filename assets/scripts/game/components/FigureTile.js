@@ -570,7 +570,7 @@ const FigureTile = cc.Class({
             this.setVisibleSprite(true);
 
             this.isGooBomb = false;
-            this.gooBombNode.active = false;
+            if(this.gooBombNode != null)  this.gooBombNode.active = false;
             this.gooBombLevel = 0;
             this.isMilkTile = false;
             this.restoreDefaultFlags();
@@ -619,7 +619,7 @@ const FigureTile = cc.Class({
             this.isMilkTile = false;
             this.restoreDefaultFlags();
             milkNode.getChildByName("milk").active = false;
-            this.gooBombNode.active = false;
+            if(this.gooBombNode != null) this.gooBombNode.active = false;
             setTimeout(() => {
                 milkNode.active = false;
             }, 0.5 * 1000);

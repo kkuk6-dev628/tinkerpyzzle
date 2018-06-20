@@ -3,6 +3,7 @@
   "appSecret": "",
   "encryptJs": true,
   "excludeScenes": [],
+  "fb-instant-games": {},
   "includeAnySDK": false,
   "includeSDKBox": true,
   "inlineSpriteFrames": true,
@@ -18,16 +19,23 @@
     "portrait": true,
     "upsideDown": false
   },
-  "packageName": "chy.kkuk.GeniesGame",
+  "packageName": "chy.kkuk.tinker",
   "privateKey": "",
-  "renderMode": "0",
-  "startScene": "9178bcdc-2e10-445d-bc94-04e787fa7719",
-  "title": "GeniesGame",
-  "webOrientation": "portrait",
-  "wechatgame": {
-    "appid": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
     "orientation": "portrait"
   },
-  "xxteaKey": "33060940-8a53-4b",
+  "renderMode": "0",
+  "startScene": "9178bcdc-2e10-445d-bc94-04e787fa7719",
+  "title": "TinkerPuzzle",
+  "webOrientation": "portrait",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "b7af4810-127a-40",
   "zipCompressJs": true
 }

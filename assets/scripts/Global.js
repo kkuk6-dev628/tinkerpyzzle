@@ -1,4 +1,30 @@
 
+if(cc.sys.isMobile){
+    ga.EGAResourceFlowType = {
+        Source : 1,
+        Sink : 2
+    };
+
+    ga.EGAProgressionStatus = {
+        Start : 1,
+        Complete : 2,
+        Fail : 3
+    };
+
+    ga.EGAErrorSeverity = {
+        Debug : 1,
+        Info : 2,
+        Warning : 3,
+        Error : 4,
+        Critical : 5
+    };
+
+    ga.EGAGender = {
+        Male : 1,
+        Female : 2
+    };
+}
+
 //noinspection JSUnresolvedFunction
 const Enum = require("EnumTypes");
 //noinspection JSUnresolvedFunction
@@ -42,6 +68,12 @@ const Global = cc.Class({
         PendingActions: 0,
         PlayNext: false,
 
+        sendGAProgressionEvent(status, progression01, progression02, progression03){
+            if(cc.sys.isMobile){
+                ga.GameAnalytics.addProgressionEvent(status, progression01, progression02, progression03);
+            }
+        },
+
         loadUserData: function () {
             if(Global.UserData == null) {
                 Global.UserData = new UserData();
@@ -60,6 +92,9 @@ const Global = cc.Class({
             if(cc.sys.isMobile){
                 if(sdkbox.PluginAdMob.isAvailable(name)){
                     return true;
+                }
+                else{
+                    cc.log(`AdMob ${name} is not available!!!!!!!!!!!!!!!!`);
                 }
             }
             return false
@@ -233,8 +268,9 @@ const Global = cc.Class({
         readPassedLevel: function () {
             let passedLevel = parseInt(cc.sys.localStorage.getItem("passedLevel"));
             if(isNaN(passedLevel)){
-                passedLevel = 1010;
+                passedLevel = 0;
             }
+            // return 1100;
             return passedLevel;
         },
 

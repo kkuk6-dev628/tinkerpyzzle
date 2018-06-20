@@ -16,7 +16,7 @@ cc.Class({
 
     rateApp: function(){
         if(cc.sys.os == cc.sys.OS_ANDROID){
-            jsb.reflection.callStaticMethod(this.ANDROID_API + "/CPController", "rateApp", "()V");
+            jsb.reflection.callStaticMethod(this.ANDROID_API + "/AppActivity", "rateApp", "()V");
         }
         else if(cc.sys.os == cc.sys.OS_IOS){
             jsb.reflection.callStaticMethod(this.IOS_API, "rateApp");

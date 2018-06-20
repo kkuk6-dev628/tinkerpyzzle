@@ -88,6 +88,16 @@ cc.Class({
             type: cc.Node
         },
 
+        _doorTeleportDestNode: {
+            default: null,
+            type: cc.Node
+        },
+
+        _airshipNode: {
+            default: null,
+            type: cc.Node
+        },
+
         _topKeyPosition: {
             default: null,
             type: cc.p
@@ -268,6 +278,8 @@ cc.Class({
         this._topKeyPosition = this._uiNode.convertToNodeSpaceAR(wKeyPos);
         this._finishBoxNode = cc.find('Canvas/fox_animation/gem_box_effect');
         this._finishBoxNode.active = false;
+        this._airshipNode = this._doorTeleportLayerNode.getChildByName('airship');
+        this._airshipNode.active = false;
         // this._finishBoxNode.getComponent(cc.Animation).play("finish_box");
     },
 
@@ -325,6 +337,7 @@ cc.Class({
         if(cellValue == "door_teleport_dest"){
             this._doorTeleportDestPosition = {col: col, row: row};
             node.getChildByName("door").active = false;
+            this._doorTeleportDestNode = node;
         }
         else if(cellValue == "door_teleport"){
             this._doorTeleportNode = node;
@@ -576,8 +589,10 @@ cc.Class({
         foxAnimationNode.active = true;
         let skeleton = foxAnimationNode.getComponent('sp.Skeleton');
         let animation = skeleton.setAnimation(0, clipName, true);
-        animation.loop = true;
-        animation.timeScale = 2;
+        if(animation){
+            animation.loop = true;
+            animation.timeScale = 2;
+        }
     },
 
     hideAllFoxAnimationNodes: function () {
@@ -748,6 +763,7 @@ cc.Class({
             // this._finishBoxNode.getComponent(cc.Animation).play('finish_box');
             this._finishBoxNode.runAction(seq);
             this._gameFinished = true;
+            this._foxNode.active = false;
         }, (delayTime) * 1000);
     },
 
@@ -808,6 +824,45 @@ cc.Class({
         this.setGamePage(this._colCurrentPage + 1, this._rowCurrentPage);
         setTimeout(() =>{
             this.showPageMovingAction();
+            this._doorTeleportNode.active = false;
+            let canvasNode = cc.find('Canvas');
+            this._airshipNode.removeFromParent();
+            canvasNode.addChild(this._airshipNode);
+            let airshipStartPos = Global.transformCoordinates(this._doorTeleportNode, canvasNode);
+            this._foxNode.active = false;
+            this._airshipNode.setPosition(airshipStartPos);
+            this._airshipNode.active = true;
+            this._doorTeleportDestNode.active = false;
+            let actionTime = 0.2 * (this._maxVisibleColumn - this._minVisibleColumn);
+            this._airshipNode.runAction(cc.sequence(
+                cc.spawn(
+                    cc.moveTo(actionTime / 2, 0, 0),
+                    cc.scaleTo(actionTime / 2, 1.5, 1.5)
+                ),
+                cc.moveBy(0.5, 0, 50),
+                cc.moveBy(0.5, 0, -50),
+                cc.moveBy(0.5, 0, 50),
+                cc.moveBy(0.5, 0, -50),
+
+            ));
+
+            setTimeout(()=>{
+                let airshipDestPos = Global.transformCoordinates(this._doorTeleportDestNode, canvasNode);
+                this._airshipNode.stopAllActions();
+                this._airshipNode.runAction(cc.sequence(
+                    cc.spawn(
+                        cc.moveTo(actionTime / 2, airshipDestPos),
+                        cc.scaleTo(actionTime / 2, 1, 1)
+                    ),
+                    cc.removeSelf(true),
+                    cc.callFunc(()=>{
+                        this._doorTeleportDestNode.active = true;
+                        this._foxNode.active = true;
+                    }, this),
+                    cc.callFunc(this.setGameState, this)
+                ));
+            }, (actionTime + 0.6) * 1000);
+
         }, 1.8 * 1000);
         setTimeout(() =>{
             this.moveFoxThroughDoor(this._doorTeleportDestPosition);
@@ -993,16 +1048,7 @@ cc.Class({
         // Global.PendingActions++;
 
         movingKeyNode.runAction(cc.sequence(cc.moveTo(1, posOpenKey), cc.removeSelf(true)));
-        // let doorNode = this._doorTeleportNode.getChildByName("door");
-        // doorNode.runAction(cc.sequence(
-        //     cc.delayTime(2),
-        //     cc.spawn(
-        //         cc.moveBy(1, 0, 45),
-        //         cc.scaleTo(1, 1, 0.3)
-        //     ),
-        //     cc.removeSelf(true),
-        //     cc.callFunc(this.setGameState, this)
-        // ));
+
         // setTimeout(() =>{
         //     openKeyNode.active = true;
         //     openKeyNode.runAction(cc.sequence(cc.rotateTo(1, -180), cc.removeSelf(true)));

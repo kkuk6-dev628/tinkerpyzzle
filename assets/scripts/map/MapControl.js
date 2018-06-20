@@ -174,8 +174,16 @@ cc.Class({
         cc.info(event, `onKeyDown: keyCode: ${JSON.stringify(event.keyCode)}`);
 
         switch(event.keyCode) {
-            case cc.KEY.back:
-                cc.vv.anysdkMgr.exitAlert();
+            case cc.KEY.back: {
+                if (cc.sys.isMobile) {
+                    sdkbox.PluginAdMob.show('gameover');
+                    sdkbox.PluginAdMob.setListener({
+                        adViewDidDismissScreen: function(name) {
+                            cc.director.end();
+                        }
+                    });
+                }
+            }
         }
     },
 
@@ -379,6 +387,7 @@ cc.Class({
     initSideSections: function () {
         this._sideSectionsContent = cc.find("main_buttons/side_menu/side_page/scrollview/view/content", this.root);
         this._sideSectionItemTemp = this._sideSectionsContent.children[0];
+        this._sideSectionItemTemp.removeFromParent();
 
         let playerPos = Math.floor(Global.passedLevel / this._levelsPerSideItem);
         this._playerPosition.getChildByName("level_number").getComponent(cc.Label).string = Global.passedLevel;
@@ -386,7 +395,7 @@ cc.Class({
         // let i = 0, j = 0;
         let playerPosIndent = 0;
         for (let i = 0, j = 0; i < Constants.LevelsCount; i += this._levelsPerSideItem, j++) {
-            if(j == playerPos){
+            if(j === playerPos){
                 this._playerPosition.removeFromParent(false);
                 this._sideSectionsContent.addChild(this._playerPosition);
                 playerPosIndent = 1;
@@ -431,7 +440,11 @@ cc.Class({
                 // cc.loader.loadRes(cc.url.res(this.getLevelIconFromNumber(levelNumber, true) + ".png"), function(err, data) {
                 //     this.spriteFrame = new cc.SpriteFrame(data);
                 // }.bind(levelNode.getComponent(cc.Sprite)));
+
                 if(levelNumber == Global.passedLevel + 1){
+                    if(this._playerNode.parent){
+                        this._playerNode.removeFromParent();
+                    }
                     levelNode.addChild(this._playerNode);
                     this._playerNode.y = 128;
                     this._playerNode.x = 0;
