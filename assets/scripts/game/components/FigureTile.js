@@ -543,7 +543,12 @@ const FigureTile = cc.Class({
             this.isChainHold = false;
             this.isMovable = true;
             this.nearbyCheck = true;
+            this.node.emit(Constants.CHECK_MATCH, {col: this.gridPosition.x, row: this.gridPosition.y});
+
             let chainAnim = cc.instantiate(this.chainAnimNode);
+            if(chainAnim === null || chainAnim === undefined){
+                return;
+            }
             chainAnim.removeFromParent(false);
             this.node.addChild(chainAnim);
             chainAnim.x = 39.5;
@@ -551,7 +556,6 @@ const FigureTile = cc.Class({
             let crushSpine = chainAnim.getComponent('sp.Skeleton');
             let anim = crushSpine.setAnimation(0, 'chains', false);
             anim.timeScale = 2;
-            this.node.emit(Constants.CHECK_MATCH, {col: this.gridPosition.x, row: this.gridPosition.y});
             return false;
         }
         return true

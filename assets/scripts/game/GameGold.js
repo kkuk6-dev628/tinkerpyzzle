@@ -151,6 +151,7 @@ cc.Class({
         let goldGroupNode = cc.find("Canvas/ui_nodes/top_status_area/top_1/gold_group");
         let goldGroupPos = Global.transformCoordinates(goldGroupNode, uiNode);
         let middlePos = cc.p((goldGroupPos.x + goldNode.x) / 2, (goldGroupPos.y + goldNode.y) / 2);
+        this._gameState = Enum.GameState.TileMoving;
         let seq = cc.sequence([
             cc.spawn([
                 cc.scaleTo(0.5, 1, 1),
@@ -160,6 +161,7 @@ cc.Class({
                 cc.scaleTo(0.5, 0.8, 0.8),
                 cc.moveTo(0.5, goldGroupPos).easing(cc.easeQuinticActionOut())
             ]),
+            cc.callFunc(()=>{this._gameState = Enum.GameState.Idle;}),
             cc.callFunc(this.recycleGold, this, goldNode)
             ]);
         goldNode.runAction(seq);

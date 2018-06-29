@@ -35,6 +35,14 @@ cc.Class({
             butterfly: "Gilded Butterfly targets any single element!",
         },
 
+        MagicTimeParticlesPos: [
+            {x:200, y:200},
+            {x:-70, y:200},
+            {x:30, y:100},
+        ],
+
+        ADShowLevel: 25,
+        ADSWatchCountPerDay: 10,
         LevelsCount: 1720,
         MaxCrushTileUnit: 1,
         MaxRunningActions: 5,

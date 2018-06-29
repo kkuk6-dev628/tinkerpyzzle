@@ -36,7 +36,7 @@ cc.Class({
         });
 
         cc.game.on(cc.game.EVENT_SHOW, function () {
-            if(Global.Settings.backgroundMusic) {
+            if(Global.Settings && Global.Settings.backgroundMusic) {
                 cc.audioEngine.resumeAll();
             }
         });

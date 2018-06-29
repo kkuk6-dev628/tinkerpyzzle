@@ -151,6 +151,21 @@ cc.Class({
             type: cc.Prefab
         },
 
+        fairyParticlePrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+
+        fairyBombParticlePrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+
+        wideFairyParticlePrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+
         lampLinePrefab: {
             default: null,
             type: cc.Prefab
@@ -182,6 +197,21 @@ cc.Class({
         },
 
         _shootBonusPool: {
+            default: null,
+            type: cc.NodePool
+        },
+
+        _fairyParticlePool: {
+            default: null,
+            type: cc.NodePool
+        },
+
+        _fairyBombParticlePool: {
+            default: null,
+            type: cc.NodePool
+        },
+
+        _wideFairyParticlePool: {
             default: null,
             type: cc.NodePool
         },
@@ -518,6 +548,7 @@ cc.Class({
         this._elapsedTime += dt;
         this._elapsedTime4Crush += dt;
         if (this._levelMapLoaded) {
+
             this.processMatched(dt);
             this.crushMatchedTiles();
             this.runPendingTiles();
@@ -529,9 +560,10 @@ cc.Class({
     },
 
     checkLevelFailed: function () {
-        if(this._gameFinished || this.isTherePendingActions() || this.isTherePendingTiles()){
+        if(this._gameFinished || this.isTherePendingActions() || this.isTherePendingTiles() || this._gameState !== Enum.GameState.Idle){
             return false;
         }
+
         if (this.checkFailedDelay < 90) {
             this.checkFailedDelay++;
             return false;
@@ -638,7 +670,7 @@ cc.Class({
         cc.director.preloadScene("map", ()=>{
             cc.director.loadScene("map");
         });
-        this.showInterstitial();
+        if(Global.PlayingLevel.levelNumber > Constants.ADShowLevel) this.showInterstitial();
     },
 
     addMoveNumber4Failed: function () {
@@ -674,14 +706,14 @@ cc.Class({
         cc.director.preloadScene("map", ()=>{
             cc.director.loadScene("map");
         });
-        this.showInterstitial();
+        if(Global.PlayingLevel.levelNumber > Constants.ADShowLevel) this.showInterstitial();
     },
 
     onFinishDialogNext: function () {
         this.clearAllTimers();
         Global.PlayNext = true;
         Global.loadLevel(Global.PlayingLevel.levelNumber + 1);
-        this.showInterstitial();
+        if(Global.PlayingLevel.levelNumber > Constants.ADShowLevel) this.showInterstitial();
     },
 
     clearAllTimers: function () {
@@ -878,6 +910,13 @@ cc.Class({
         let shootBonusParticlePref = cc.instantiate(this.shootBonusParticlePrefab);
         this._shootBonusPool.put(shootBonusParticlePref);
 
+        this._fairyParticlePool = new cc.NodePool();
+        let fairyParticlePref = cc.instantiate(this.fairyParticlePrefab);
+        this._fairyParticlePool.put(fairyParticlePref);
+
+        this._fairyBombParticlePool = new cc.NodePool();
+        this._wideFairyParticlePool = new cc.NodePool();
+
         this._lampLinePool = new cc.NodePool();
         this._lampPointPool = new cc.NodePool();
         for (let i = 0; i < 15; i++) {
@@ -1011,6 +1050,7 @@ cc.Class({
             cc.scaleTo(0.05, 1, 1),
         ]);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this, false);
+
     },
 
     onKeyDown: function (event) {
@@ -1299,12 +1339,42 @@ cc.Class({
 
     getShootBonusParticle: function () {
         let shootBonus = null;
-        if (this._shootBonusPool != null && this._shootBonusPool.size() > 0) { // use size method to check if there're nodes available in the pool
+        if (this._shootBonusPool != null && this._shootBonusPool.size() > 0) {
             shootBonus = this._shootBonusPool.get();
-        } else { // if not enough node in the pool, we call cc.instantiate to create node
+        } else {
             shootBonus = cc.instantiate(this.shootBonusParticlePrefab);
         }
         return shootBonus;
+    },
+
+    getFairyParticle: function () {
+        let fairyParticle = null;
+        if (this._fairyParticlePool != null && this._fairyParticlePool.size() > 0) {
+            fairyParticle = this._fairyParticlePool.get();
+        } else {
+            fairyParticle = cc.instantiate(this.fairyParticlePrefab);
+        }
+        return fairyParticle;
+    },
+
+    getFairyBombParticle: function () {
+        let fairyParticle = null;
+        if (this._fairyBombParticlePool != null && this._fairyBombParticlePool.size() > 0) {
+            fairyParticle = this._fairyBombParticlePool.get();
+        } else {
+            fairyParticle = cc.instantiate(this.fairyBombParticlePrefab);
+        }
+        return fairyParticle;
+    },
+
+    getWideFairyParticle: function () {
+        let fairyParticle = null;
+        if (this._wideFairyParticlePool != null && this._wideFairyParticlePool.size() > 0) {
+            fairyParticle = this._wideFairyParticlePool.get();
+        } else { // if not enough node in the pool, we call cc.instantiate to create node
+            fairyParticle = cc.instantiate(this.wideFairyParticlePrefab);
+        }
+        return fairyParticle;
     },
 
     getWishingLine: function () {
@@ -1340,7 +1410,19 @@ cc.Class({
     },
 
     recycleShootBonus: function (shootBonus) {
-        (this._shootBonusPool != null) && (this._shootBonusPool.put(shootBonus));
+        (this._shootBonusPool !== null) && (this._shootBonusPool.put(shootBonus));
+    },
+
+    recycleFairyParticle: function (shootBonus) {
+        (this._fairyParticlePool !== null) && (this._fairyParticlePool.put(shootBonus));
+    },
+
+    recycleFairyBombParticle: function (fairyBombParticle) {
+        (this._fairyBombParticlePool !== null) && (this._fairyBombParticlePool.put(fairyBombParticle));
+    },
+
+    recycleWideFairyParticle: function (shootBonus) {
+        (this._wideFairyParticlePool !== null) && (this._wideFairyParticlePool.put(shootBonus));
     },
 
     recycleFigBonus: function (figBonusNode) {
@@ -2008,7 +2090,7 @@ cc.Class({
             this._isBonusTime = true;
             return;
         }
-        let time4MoveNumber = 0.2;
+        let time4MoveNumber = 0.3;
         let bonusTimeDelay = Global.PlayingLevel.moveNumber * time4MoveNumber;
 
         let delayTime = this.showGeniesAnimation();
@@ -2062,39 +2144,37 @@ cc.Class({
                 cc.fadeOut(0.4)
             )
         );
+        let duration = 2.3;
         setTimeout(() => {
             explosionNode.active = false;
             magicTimeNode.active = true;
-            // magicTimeNode.getComponent('sp.Skeleton').setAnimation(0, 'genies', true);
             magicTimeNode.runAction(
                 cc.fadeIn(0.5)
             );
-        }, 0.5 * 1000);
-        let duration = 2.3;
-        for (let i = 0; i < 30; i++) {
-            setTimeout(() => {
-                let circle = this.getBonusCircleEffect();
-                circle.x = Math.random() * 320;
-                circle.y = -320 * Math.random();
-                circle.setScale(0.2, 0.2);
+            for (let i = 0; i < 3; i++) {
+                let circle = this.getWideFairyParticle();
+                circle.x = Constants.MagicTimeParticlesPos[i].x;
+                circle.y = Constants.MagicTimeParticlesPos[i].y;
+                //circle.setScale(0.2, 0.2);
                 circle.active = true;
-                let seq = cc.sequence(
-                    cc.spawn(
-                        cc.scaleTo(0.2, 0.8, 0.8),
-                        cc.fadeIn(0.2),
-                    ),
-                    cc.spawn(
-                        cc.scaleTo(0.2, 1.2, 1.2),
-                        cc.fadeOut(0.2)
-                    )
-                );
-                circle.parent = magicTimeNode;
-                circle.runAction(seq.clone());
+                // let seq = cc.sequence(
+                //     cc.spawn(
+                //         cc.scaleTo(0.2, 0.8, 0.8),
+                //         cc.fadeIn(0.2),
+                //     ),
+                //     cc.spawn(
+                //         cc.scaleTo(0.2, 1.2, 1.2),
+                //         cc.fadeOut(0.2)
+                //     )
+                // );
+                circle.parent = this._globalEffectsContainer;
+                // circle.runAction(seq.clone());
                 setTimeout(() => {
-                    this.recycleBonusCircle(circle)
-                }, 0.45 * 1000);
-            }, 0.1 * i * 1000);
-        }
+                    this.recycleWideFairyParticle(circle)
+                }, (duration-0.5) * 1000);
+            }
+        }, 0.5 * 1000);
+        magicTimeNode.setLocalZOrder(1000);
         setTimeout(() => {
             magicTimeNode.active = false;
         }, duration * 1000);
@@ -2118,15 +2198,17 @@ cc.Class({
         pos = cc.v2(pos.x + Constants.TileSize / 2, pos.y + Constants.TileSize / 2);
         let moveNumNode = cc.find("Canvas/ui_nodes/top_status_area/common_ui/move_num");
         let startPos = Global.transformCoordinates(moveNumNode, this._globalEffectsContainer);
-        let shootBonus = this.getShootBonusParticle();
+        let shootBonus = this.getFairyParticle();
         shootBonus.x = startPos.x;
         shootBonus.y = startPos.y;
         shootBonus.setScale(1, 1);
         shootBonus.parent = this._globalEffectsContainer;
-        shootBonus.getComponent(cc.ParticleSystem).resetSystem();
+        let fairyParticle = shootBonus.getComponent(cc.ParticleSystem);
+        fairyParticle.resetSystem();
+
         let seq = cc.sequence(
-            cc.moveTo(0.15, pos),
-            cc.callFunc(this.recycleShootBonus, this, shootBonus)
+            cc.moveTo(0.3, pos),
+            cc.callFunc(this.recycleFairyParticle, this, shootBonus)
         );
         shootBonus.runAction(seq);
         let bonusCircleLight = this.getBonusCircleLightEffect();
@@ -2144,11 +2226,11 @@ cc.Class({
                 ),
                 cc.callFunc(this.recycleBonusCircleLight, this, bonusCircleLight)
             ));
-        }, 0.15 * 1000);
+        }, 0.3 * 1000);
 
         setTimeout(() => {
             this.addFigureBonusNode(randomTile.col, randomTile.row, bonus);
-        }, 0.2 * 1000);
+        }, 0.35 * 1000);
 
     },
 
@@ -2598,8 +2680,8 @@ cc.Class({
             return;
         }
 
-        firstTile.initPosition();
-        secondTile.initPosition();
+        (typeof firstTile.initPosition === "function") && firstTile.initPosition();
+        (typeof firstTile.initPosition === "function") && secondTile.initPosition();
 
         if (this.checkBonusMove(detail.from, detail.to)) {
             this.setGameState(null, Enum.GameState.Idle);
@@ -2693,8 +2775,10 @@ cc.Class({
         pointNode.y = startPos.y;
         let moveAct = cc.moveTo(0.3, endPos);
         let scaleAct = cc.scaleTo(0.075, 3.0);
+
         pointNode.runAction(cc.sequence(moveAct, cc.delayTime(0.33), scaleAct, cc.callFunc(this.recycleLampPoint, this),));
         setTimeout(() => {
+            //this.showCircleEffect(endPos);
             bonus && this.addFigureBonusNode(end.x, end.y, bonus);
             this.addTileToCrushQueue({col: end.x, row: end.y});
         }, 0.75 * 1000);
@@ -3703,6 +3787,34 @@ cc.Class({
     },
 
     showBarEffect: function (pos, rotation) {
+        let fairyParticle1 = this.getFairyParticle();
+        fairyParticle1.getComponent(cc.ParticleSystem).resetSystem();
+        fairyParticle1.x = pos.x;
+        fairyParticle1.y = pos.y;
+        this._globalEffectsContainer.addChild(fairyParticle1);
+        let movement = 2000;
+        let rad = Math.PI * rotation / 180;
+        let xMovement = Math.cos(rad) * movement;
+        let yMovement = -Math.sin(rad) * movement;
+        fairyParticle1.runAction(cc.sequence(
+            cc.moveBy(1.2, xMovement, yMovement),
+            cc.callFunc(()=>{
+                this.recycleFairyParticle(fairyParticle1)
+            })
+        ));
+
+        let fairyParticle2 = this.getFairyParticle();
+        fairyParticle2.getComponent(cc.ParticleSystem).resetSystem();
+        fairyParticle2.x = pos.x;
+        fairyParticle2.y = pos.y;
+        this._globalEffectsContainer.addChild(fairyParticle2);
+        fairyParticle2.runAction(cc.sequence(
+            cc.moveBy(1.2, -xMovement, -yMovement),
+            cc.callFunc(()=>{
+                this.recycleFairyParticle(fairyParticle2)
+            })
+        ));
+
         let barImage = this.getBonusBarEffect();
         barImage.x = pos.x;
         barImage.y = pos.y;
@@ -3711,10 +3823,6 @@ cc.Class({
         barImage.setScale(0.5, 2);
         barImage.setOpacity(255);
         this._globalEffectsContainer.addChild(barImage);
-        let movement = 2000;
-        let rad = Math.PI * rotation / 180;
-        let xMovement = Math.cos(rad) * movement;
-        let yMovement = -Math.sin(rad) * movement;
 
         barImage.runAction(
             cc.sequence(
@@ -3794,6 +3902,15 @@ cc.Class({
                 cc.callFunc(this.recycleBonusCircleLight, this, circleLightNode)
             )
         );
+
+        let fairyBombParticle = this.getFairyBombParticle();
+        fairyBombParticle.x = pos.x; fairyBombParticle.y = pos.y;
+        fairyBombParticle.getComponent(cc.ParticleSystem).resetSystem();
+        this._globalEffectsContainer.addChild(fairyBombParticle);
+        setTimeout(() => {
+            fairyBombParticle.removeFromParent();
+            this.recycleFairyBombParticle(fairyBombParticle);
+        }, 0.7*1000);
     },
 
     showBonusParticle: function (pos, rotation) {
@@ -5462,7 +5579,7 @@ cc.Class({
         }
         col = parseInt(col);
         row = parseInt(row);
-        return this._mapNodesArray[layerName] && this._mapNodesArray[layerName][row] && this._mapNodesArray[layerName][row][col] &&
+        return this._mapNodesArray && this._mapNodesArray[layerName] && this._mapNodesArray[layerName][row] && this._mapNodesArray[layerName][row][col] &&
             this._mapNodesArray[layerName][row][col] instanceof Tile;
     },
 

@@ -748,6 +748,10 @@ cc.Class({
         this._finishBoxNode.x = wayFinishPos.x;
         this._finishBoxNode.y = wayFinishPos.y;
 
+        let fairyParticle = this.getWideFairyParticle();
+        fairyParticle.x = 0; fairyParticle.y = 30;
+        fairyParticle.parent = this._finishBoxNode;
+
         this.addPendingAction();
         setTimeout(() => {
             let seq = cc.sequence(
@@ -755,6 +759,9 @@ cc.Class({
                 cc.delayTime(0.5),
                 cc.moveTo(0.6, topBoxPos),
                 cc.toggleVisibility(),
+                cc.callFunc(()=>{
+                    this.recycleWideFairyParticle(fairyParticle);
+                }),
                 cc.callFunc(this.setGameState, this)
             );
             this.scoreManager.pushConstantScore({scoreType: Constants.ScoreUnits.jewel_box, position: this._wayFinishNode.getPosition()});

@@ -281,6 +281,12 @@ cc.Class({
         // cc.info(event.getPreviousLocation(), "previous position");
         // cc.info(endPosY, "end Position");
         // cc.info(this.delta, "delta");
+        if(this.section === undefined || this.section === null){
+            return;
+        }
+        if(this.delta === undefined || this.delta === null){
+            return;
+        }
 
         const touchDirection = Math.sign(this.delta.y);
         const multiplier = 10;

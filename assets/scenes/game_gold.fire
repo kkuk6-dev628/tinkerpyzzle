@@ -6659,6 +6659,15 @@
     "shootBonusParticlePrefab": {
       "__uuid__": "296d994b-7219-41b7-84f4-07b17865fbd7"
     },
+    "fairyParticlePrefab": {
+      "__uuid__": "8ea100dc-f0e8-46f3-a469-f7813cd693f7"
+    },
+    "fairyBombParticlePrefab": {
+      "__uuid__": "dc189138-f5c7-45fc-b49a-cfef5aa22ab9"
+    },
+    "wideFairyParticlePrefab": {
+      "__uuid__": "f6f4db2a-7214-45fe-95cc-56d2d1291c9b"
+    },
     "lampLinePrefab": {
       "__uuid__": "213d97ac-1568-4560-b792-b4f18af798ad"
     },
@@ -6678,6 +6687,9 @@
       "__uuid__": "d3083746-7e41-435e-b655-5edc8f61799d"
     },
     "_shootBonusPool": null,
+    "_fairyParticlePool": null,
+    "_fairyBombParticlePool": null,
+    "_wideFairyParticlePool": null,
     "_bonusBarPool": null,
     "_bonusCirclePool": null,
     "_bonusCircleLightPool": null,
@@ -20799,7 +20811,7 @@
     "_autoRemoveOnFinish": false,
     "_totalParticles": 80,
     "_duration": -1,
-    "_emissionRate": 160,
+    "_emissionRate": 100,
     "_life": 0.8,
     "_lifeVar": 0.4,
     "_startColor": {
@@ -20832,7 +20844,7 @@
     },
     "_angle": 90,
     "_angleVar": 360,
-    "_startSize": 60,
+    "_startSize": 40,
     "_startSizeVar": 20,
     "_endSize": 0,
     "_endSizeVar": 0,

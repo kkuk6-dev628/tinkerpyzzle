@@ -231,7 +231,7 @@ const Global = cc.Class({
                 return true;
             }
             else{
-                return Global.UserData.adsWatchedCount < 5;
+                return Global.UserData.adsWatchedCount < Constants.ADSWatchCountPerDay;
             }
         },
 
@@ -261,7 +261,7 @@ const Global = cc.Class({
                 return true;
             }
             else{
-                return Global.UserData.videoWatchedCount < 5;
+                return Global.UserData.videoWatchedCount < Constants.ADSWatchCountPerDay;
             }
         },
 
