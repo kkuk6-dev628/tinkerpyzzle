@@ -151,7 +151,7 @@ cc.Class({
         let goldGroupNode = cc.find("Canvas/ui_nodes/top_status_area/top_1/gold_group");
         let goldGroupPos = Global.transformCoordinates(goldGroupNode, uiNode);
         let middlePos = cc.p((goldGroupPos.x + goldNode.x) / 2, (goldGroupPos.y + goldNode.y) / 2);
-        this._gameState = Enum.GameState.TileMoving;
+        this._gameState = Enum.GameState.Collecting;
         let seq = cc.sequence([
             cc.spawn([
                 cc.scaleTo(0.5, 1, 1),
@@ -430,15 +430,15 @@ cc.Class({
         if(this.collectedGoldCount >= this.goldCount){
             this._gameFinished = true;
         }
+        if(this.collectedGoldCount >= this.goldCount){
+            this.finishGame();
+        }
+        else {
+            this.goldCountInPage < this.goldCount && this.goldCountInPage <= this.collectedGoldCount &&
+            this.moveNextPage();
+        }
         setTimeout(() => {
             this.setGoldCountLabel();
-            if(this.collectedGoldCount >= this.goldCount){
-                this.finishGame();
-            }
-            else {
-                this.goldCountInPage < this.goldCount && this.goldCountInPage <= this.collectedGoldCount &&
-                this.moveNextPage();
-            }
         }, 1000);
         this.scoreManager.pushConstantScore({scoreType: Constants.ScoreUnits.gold, position: this.grid2pos(event.detail.col, event.detail.row)});
         this.showGoldCollectingAction(event.detail.col, event.detail.row);

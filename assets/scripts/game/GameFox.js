@@ -777,6 +777,9 @@ cc.Class({
     findSquareBonusTarget: function (col, row) {
         let specialTiles = this.searchSpecialTiles();
         let squareTargets = [];
+        if(specialTiles.wayStone.length > 0){
+            return specialTiles.wayStone[Math.floor(Math.random() * specialTiles.wayStone.length)];
+        }
         if (specialTiles.forceWay.length > 0) {
             squareTargets.push(...specialTiles.forceWay);
         }

@@ -54,7 +54,49 @@ cc.Class({
                 else{
                     spriteFrame = this.figuresAtlas.getSpriteFrame(`${value}_${this._figure}`);
                 }
-                this.node.getChildByName("figure2").getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                let bonusNode = this.node.getChildByName("figure2");
+                bonusNode.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+
+                this.bonusEffectNode = bonusNode.getChildByName("bonus");
+
+                this.bonusEffectNode.active = this._morphActive;
+                let crushSpine = this.bonusEffectNode.getComponent('sp.Skeleton');
+                switch (this._bonus){
+                    case Enum.BonusTypes.HBonus:
+                        this.bonusEffectNode.setRotation(0);
+                        crushSpine.defaultAnimation = 'bonus_effect';
+                        let anim = crushSpine.setAnimation(0, 'bonus_effect', true);
+                        // anim.timeScale = 2;
+                        break;
+                    case Enum.BonusTypes.VBonus:
+                        this.bonusEffectNode.setRotation(90);
+                        crushSpine.defaultAnimation = 'bonus_effect';
+                        let anim1 = crushSpine.setAnimation(0, 'bonus_effect', true);
+                        // anim.timeScale = 2;
+                        break;
+                    case Enum.BonusTypes.XBonus:
+                        this.bonusEffectNode.setRotation(45);
+                        crushSpine.defaultAnimation = 'xbonus_effect';
+                        let anim2 = crushSpine.setAnimation(0, 'xbonus_effect', true);
+                        // anim.timeScale = 2;
+                        break;
+                    case Enum.BonusTypes.Bomb:
+                        this.bonusEffectNode.setRotation(0);
+                        crushSpine.defaultAnimation = 'bomb_effect_around';
+                        let anim3 = crushSpine.setAnimation(0, 'bomb_effect_around', true);
+                        // anim.timeScale = 2;
+                        break;
+                    case Enum.BonusTypes.Lamp:
+                        this.bonusEffectNode.setRotation(90);
+                        crushSpine.defaultAnimation = 'bomb_effect_lamp_area';
+                        let anim4 = crushSpine.setAnimation(0, 'bomb_effect_lamp_area', true);
+                        // anim.timeScale = 2;
+                        break;
+                    default:
+                        this.bonusEffectNode.active = false;
+                        break;
+                }
+
             },
             visible: false
         },
@@ -72,7 +114,10 @@ cc.Class({
         },
 
         _bonusBackup: undefined,
-        _forceWayBackup: undefined
+        _forceWayBackup: undefined,
+        _bonusEffectNode:{
+
+        }
     },
 
     // use this for initialization
@@ -119,9 +164,10 @@ cc.Class({
         if(this._morphActive){
             this._bonus = this._bonusBackup;
             this._forceWay = this._forceWayBackup;
-
+            this.bonusEffectNode.active = true;
         }
         else{
+            this.bonusEffectNode.active = false;
             this._bonus = undefined;
             this._forceWay = undefined;
         }

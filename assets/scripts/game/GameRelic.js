@@ -275,7 +275,9 @@ cc.Class({
 
     onRelicCollected: function (event) {
         this.collectedRelicCount ++;
-        this.setRelicCountLabel();
+        setTimeout(()=>{
+            this.setRelicCountLabel();
+        }, 1.4);
         // cc.info(event.detail);
         // this._relicMergedNode.getChildByName(event.detail).active = true;
         if(this.collectedRelicCount == Global.PlayingLevel.dropDownRelics){

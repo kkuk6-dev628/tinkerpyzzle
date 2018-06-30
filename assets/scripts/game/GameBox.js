@@ -135,12 +135,12 @@ cc.Class({
         let markScore = markTile.gridWidth * markTile.gridHeight * Constants.ScoreUnits.mark;
         this._mapNodesArray[Constants.MarkLayerName][params.row][params.col] = Constants.MARK_LOCK_FREE;
         this.scoreManager.pushConstantScore({position: this.grid2pos(params.col, params.row), scoreType: markScore});
-        this._gameState = Enum.GameState.TileMoving;
+        this._gameState = Enum.GameState.Collecting;
+        if(this.collectedBoxCount >= this.boxCount){
+            this.finishGame();
+        }
         setTimeout(() => {
             this.setBoxCountLabel();
-            if(this.collectedBoxCount >= this.boxCount){
-                this.finishGame();
-            }
             this._gameState = Enum.GameState.Idle;
         }, params.delayTime * 1000);
     },

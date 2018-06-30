@@ -652,14 +652,14 @@ const FigureTile = cc.Class({
             // }
             // cc.info(this, "crushTile");
             let figuresCrush = FigureTile.getFiguresCrush();
-            if(figuresCrush != null) {
+            if(figuresCrush !== null) {
                 if (this.figure !== "lamp_area" && (!this.bonus || this.morphActive !== true)) {
-                    (this.node != null) && (this.node.parent != null) && this.node.parent.addChild(figuresCrush);
+                    (this.node !== null) && (this.node.parent !== null) && this.node.parent.addChild(figuresCrush);
                     figuresCrush.x = this.node.x;
                     figuresCrush.y = this.node.y;
                     let crushSpine = figuresCrush.getChildByName('spine').getComponent('sp.Skeleton');
                     let anim = crushSpine.setAnimation(0, this.figure, false);
-                    if(anim != null) anim.timeScale = 2;
+                    if(anim !== null) anim.timeScale = 2;
                     setTimeout(() => {
                         FigureTile.recycleFiguresCrush(figuresCrush);
                     }, 0.5 * 1000);

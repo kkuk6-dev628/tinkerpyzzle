@@ -5,6 +5,7 @@ module.exports.GameState = cc.Enum({
     TileCrashing: 2,
     SquareCrushing: 3,
     Shuffling: 4,
+    Collecting: 5,
 });
 
 module.exports.TileKind = cc.Enum({

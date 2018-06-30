@@ -560,7 +560,8 @@ cc.Class({
     },
 
     checkLevelFailed: function () {
-        if(this._gameFinished || this.isTherePendingActions() || this.isTherePendingTiles() || this._gameState !== Enum.GameState.Idle){
+        if(this._gameFinished || this.isTherePendingActions() || this.isTherePendingTiles()
+            || this._gameState === Enum.GameState.Collecting){
             return false;
         }
 
@@ -1756,6 +1757,7 @@ cc.Class({
         let tile = morphNode.getComponent(Constants.MorphScriptName);
         if (oldTile && tile) {
             tile.copyTile(oldTile);
+            tile.setMorphActive(cellValue == "morph_special_area");
             oldTile.bonus && (tile.bonus = oldTile.bonus);
             oldTile.forceWay && (tile.forceWay = oldTile.forceWay);
             tile.forceWay && morphNode.on(Constants.FORCE_WAY_COLLECTED, this.onForceWayCollected, this);
@@ -1763,7 +1765,6 @@ cc.Class({
             if (oldTile.figure == Enum.BonusTypes.Lamp) {
                 tile.figure = oldTile.figureBackup;
             }
-            tile.setMorphActive(cellValue == "morph_special_area");
             this.recycleTile(oldTile);
             this.addNodeToLayer(this.figuresLayer, morphNode, col, row);
             tile.activateAllChildren(true);
@@ -2974,9 +2975,9 @@ cc.Class({
             this._hintTimer = setTimeout(fn, 5 * 1000);
         }
 
-        if (this._gameState != Enum.GameState.SquareCrushing) {
-            this._gameState = Enum.GameState.Idle;
-        }
+        // if (this._gameState != Enum.GameState.SquareCrushing) {
+        //     this._gameState = Enum.GameState.Idle;
+        // }
     },
 
     findHoles: function () {
@@ -4205,6 +4206,7 @@ cc.Class({
             wishingWell: [],
             ground: [],
             countStone: [],
+            wayStone: [],
             milk: []
         };
         for (let i = this._minVisibleRow; i <= this._maxVisibleRow; i++) {
@@ -4227,6 +4229,11 @@ cc.Class({
                         result.ground.push({col: j, row: i});
                     }
                     if (figureTile.tileKind == Enum.TileKind.CountStone) {
+                        if(this._mapNodesArray[Constants.WayLayerName]){
+                            if(this._mapNodesArray[Constants.WayLayerName][i] && this._mapNodesArray[Constants.WayLayerName][i][j]){
+                                result.wayStone.push({col: j, row: i});
+                            }
+                        }
                         result.countStone.push({col: j, row: i});
                     }
                 }
