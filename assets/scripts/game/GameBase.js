@@ -642,8 +642,8 @@ cc.Class({
         // this.addFigureNode(Constants.FiguresLayerName, 3, 3, "fig3");
         // this.addFigureNode(Constants.FiguresLayerName, 4, 3, "fig3");
         // this.addFigureNode(Constants.FiguresLayerName, 6, 3, "fig3");
-        // this.addFigureBonusNode(4, 2, Enum.BonusTypes.Lamp);
-        // this.addFigureBonusNode(4, 3, Enum.BonusTypes.HBonus);
+        // this.addFigureBonusNode(4, 4, Enum.BonusTypes.Lamp);
+        // this.addFigureBonusNode(4, 3, Enum.BonusTypes.Lamp);
         this.setMapBorder();
         this._mapNodesArray.hasOwnProperty(Constants.ConveyorLayerName) && this.buildConveyors();
         this.checkMatches();
@@ -1055,11 +1055,27 @@ cc.Class({
     },
 
     onKeyDown: function (event) {
-        cc.info(event, `onKeyDown: keyCode: ${JSON.stringify(event.keyCode)}`);
+        // cc.info(event, `onKeyDown: keyCode: ${JSON.stringify(event.keyCode)}`);
 
         switch(event.keyCode) {
-            case cc.KEY.back:
-                this.onSettingsButtonClicked();
+            case cc.KEY.back:{
+                let settings = this._popupsNode.getChildByName("settings_popup");
+                let finish = this._popupsNode.getChildByName("finish_popup");
+                let failed = this._popupsNode.getChildByName("failed_popup");
+                if(failed.active){
+                    this.onFailedDialogClose();
+                }
+                else if(finish.active){
+                    this.onFinishDialogClose();
+                }
+                else if(settings.active){
+                    this.onSettingsCloseClicked();
+                }
+                else{
+                    this.onSettingsButtonClicked();
+                }
+                break;
+            }
         }
     },
 
@@ -2431,21 +2447,21 @@ cc.Class({
         if (!firstTile.isMatchable || !secondTile.isMatchable) {
             return false;
         }
-        if (firstTile.bonus == Enum.BonusTypes.Lamp) {
-            if (secondTile.bonus == Enum.BonusTypes.Lamp) {
+        if (firstTile.bonus === Enum.BonusTypes.Lamp) {
+            if (secondTile.bonus === Enum.BonusTypes.Lamp) {
                 this.show2LampAction(firstTile, secondTile);
                 // this.setGameState();
                 // this.countDownMoveNum();
                 return true;
             }
-            else if (!secondTile.bonus) {
+            else if (!secondTile.bonus && secondTile.tileKind !== Enum.TileKind.Relic) {
                 this.processLampBonus(secondTile.figure, first);
                 // this.setGameState();
                 // this.countDownMoveNum();
                 return true;
             }
         }
-        else if (secondTile.bonus == Enum.BonusTypes.Lamp && !firstTile.bonus) {
+        else if (secondTile.bonus == Enum.BonusTypes.Lamp && !firstTile.bonus && firstTile.tileKind !== Enum.TileKind.Relic) {
             this.processLampBonus(firstTile.figure, second);
             // this.setGameState();
             // this.countDownMoveNum();
@@ -2779,8 +2795,15 @@ cc.Class({
 
         pointNode.runAction(cc.sequence(moveAct, cc.delayTime(0.33), scaleAct, cc.callFunc(this.recycleLampPoint, this),));
         setTimeout(() => {
-            //this.showCircleEffect(endPos);
-            bonus && this.addFigureBonusNode(end.x, end.y, bonus);
+            if(bonus){
+                this.addFigureBonusNode(end.x, end.y, bonus);
+            }
+            else{
+                let tile = this.getFigureTile(end.x, end.y);
+                let pos = Global.transformCoordinates(tile.node, this._globalEffectsContainer);
+                pos.x += Constants.TileSize / 2; pos.y += Constants.TileSize / 2;
+                this.showCircleEffect(pos);
+            }
             this.addTileToCrushQueue({col: end.x, row: end.y});
         }, 0.75 * 1000);
         setTimeout(() => {
@@ -4882,6 +4905,7 @@ cc.Class({
         let pos = this.grid2pos(firstTile.gridPosition.x, firstTile.gridPosition.y);
         Global.AudioManager.playLampLamp();
         let rotate = 2;
+
         let globalPos = Global.transformCoordinates(firstTile.node, this._uiNode);
         globalPos.x += Constants.TileSize / 2;
         globalPos.y += Constants.TileSize / 2;
@@ -4909,6 +4933,15 @@ cc.Class({
             cc.scaleTo(0.1, 1, 1),
         ]);
         this.addPendingAction();
+
+        let firstPos = Global.transformCoordinates(firstTile.node, this._globalEffectsContainer);
+        firstPos.x += Constants.TileSize / 2; firstPos.y += Constants.TileSize / 2;
+        let secondPos = Global.transformCoordinates(secondTile.node, this._globalEffectsContainer);
+        secondPos.x += Constants.TileSize / 2; secondPos.y += Constants.TileSize / 2;
+        setTimeout(() => {
+            this.showCircleEffect(firstPos, 2);
+            this.showCircleEffect(secondPos, 2);
+        }, 2 * 1000);
 
         if (secondTile && secondTile.node) {
             firstTile.node.removeFromParent(false);
@@ -4939,6 +4972,12 @@ cc.Class({
 
         setTimeout(() => {
             this.showLampAllAction(globalPos);
+            let firstPos = Global.transformCoordinates(firstTile.node, this._globalEffectsContainer);
+            firstPos.x += Constants.TileSize / 2; firstPos.y += Constants.TileSize / 2;
+            let secondPos = Global.transformCoordinates(secondTile.node, this._globalEffectsContainer);
+            secondPos.x += Constants.TileSize / 2; secondPos.y += Constants.TileSize / 2;
+            this.showCircleEffect(firstPos);
+            this.showCircleEffect(secondPos);
         }, 2 * 1000);
         setTimeout(() => {
             this.crushAllTiles({col: firstTile.gridPosition.x, row: firstTile.gridPosition.y});
@@ -6374,7 +6413,12 @@ cc.Class({
         if (settingsPopup) {
             this._popupMaskNode.active = false;
             let action = Global.createHidePopupAction();
-            settingsPopup.runAction(action);
+            settingsPopup.runAction(cc.sequence(
+                action,
+                cc.callFunc(()=>{
+                    settingsPopup.active = false;
+                })
+            ));
         }
     },
 

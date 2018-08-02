@@ -4,6 +4,321 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>New folder (2)/_key_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{31,27}</string>
+                <key>spriteSourceSize</key>
+                <string>{31,27}</string>
+                <key>textureRect</key>
+                <string>{{207,326},{31,27}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/_key_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{20,14}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,14}</string>
+                <key>textureRect</key>
+                <string>{{226,2},{20,14}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>New folder (2)/door.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{46,126}</string>
+                <key>spriteSourceSize</key>
+                <string>{46,126}</string>
+                <key>textureRect</key>
+                <string>{{176,2},{46,126}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/door1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{46,126}</string>
+                <key>spriteSourceSize</key>
+                <string>{46,126}</string>
+                <key>textureRect</key>
+                <string>{{176,132},{46,126}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/effect_circle.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{128,128}</string>
+                <key>spriteSourceSize</key>
+                <string>{128,128}</string>
+                <key>textureRect</key>
+                <string>{{98,1038},{128,128}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/fog.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{159,170}</string>
+                <key>spriteSourceSize</key>
+                <string>{159,170}</string>
+                <key>textureRect</key>
+                <string>{{2,2},{159,170}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>New folder (2)/house1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{158,158}</string>
+                <key>spriteSourceSize</key>
+                <string>{158,158}</string>
+                <key>textureRect</key>
+                <string>{{2,552},{158,158}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/house_ mask.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{158,158}</string>
+                <key>spriteSourceSize</key>
+                <string>{158,158}</string>
+                <key>textureRect</key>
+                <string>{{2,714},{158,158}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/house_bg.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{158,158}</string>
+                <key>spriteSourceSize</key>
+                <string>{158,158}</string>
+                <key>textureRect</key>
+                <string>{{2,876},{158,158}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/key.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{31,35}</string>
+                <key>spriteSourceSize</key>
+                <string>{31,35}</string>
+                <key>textureRect</key>
+                <string>{{168,326},{31,35}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>New folder (2)/small_door1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{28,69}</string>
+                <key>spriteSourceSize</key>
+                <string>{28,69}</string>
+                <key>textureRect</key>
+                <string>{{168,262},{28,69}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>New folder (2)/small_door2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{28,69}</string>
+                <key>spriteSourceSize</key>
+                <string>{28,69}</string>
+                <key>textureRect</key>
+                <string>{{168,294},{28,69}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>New folder (2)/small_house1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,552},{79,79}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/small_house2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,635},{79,79}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/small_house_bg.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,718},{79,79}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder (2)/small_house_mask.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,801},{79,79}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>New folder/texture4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,5}</string>
+                <key>spriteSize</key>
+                <string>{383,162}</string>
+                <key>spriteSourceSize</key>
+                <string>{385,172}</string>
+                <key>textureRect</key>
+                <string>{{2,165},{383,162}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>_key_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{31,27}</string>
+                <key>spriteSourceSize</key>
+                <string>{31,27}</string>
+                <key>textureRect</key>
+                <string>{{207,326},{31,27}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>_key_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{20,14}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,14}</string>
+                <key>textureRect</key>
+                <string>{{226,2},{20,14}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>door.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{46,126}</string>
+                <key>spriteSourceSize</key>
+                <string>{46,126}</string>
+                <key>textureRect</key>
+                <string>{{176,2},{46,126}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>door1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{46,126}</string>
+                <key>spriteSourceSize</key>
+                <string>{46,126}</string>
+                <key>textureRect</key>
+                <string>{{176,132},{46,126}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>effect_circle.png</key>
             <dict>
                 <key>aliases</key>
@@ -15,7 +330,7 @@
                 <key>spriteSourceSize</key>
                 <string>{128,128}</string>
                 <key>textureRect</key>
-                <string>{{256,1},{128,128}}</string>
+                <string>{{98,1038},{128,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -30,7 +345,37 @@
                 <key>spriteSourceSize</key>
                 <string>{159,170}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{159,170}}</string>
+                <string>{{2,2},{159,170}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>house1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,0}</string>
+                <key>spriteSize</key>
+                <string>{92,158}</string>
+                <key>spriteSourceSize</key>
+                <string>{158,158}</string>
+                <key>textureRect</key>
+                <string>{{2,1038},{92,158}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>house_ mask.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,0}</string>
+                <key>spriteSize</key>
+                <string>{92,158}</string>
+                <key>spriteSourceSize</key>
+                <string>{158,158}</string>
+                <key>textureRect</key>
+                <string>{{2,1038},{92,158}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -45,7 +390,112 @@
                 <key>spriteSourceSize</key>
                 <string>{158,158}</string>
                 <key>textureRect</key>
-                <string>{{162,1},{92,158}}</string>
+                <string>{{2,1038},{92,158}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>key.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{31,35}</string>
+                <key>spriteSourceSize</key>
+                <string>{31,35}</string>
+                <key>textureRect</key>
+                <string>{{168,326},{31,35}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>small_door1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{28,69}</string>
+                <key>spriteSourceSize</key>
+                <string>{28,69}</string>
+                <key>textureRect</key>
+                <string>{{168,262},{28,69}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>small_door2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{28,69}</string>
+                <key>spriteSourceSize</key>
+                <string>{28,69}</string>
+                <key>textureRect</key>
+                <string>{{168,294},{28,69}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>small_house1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,552},{79,79}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>small_house2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,635},{79,79}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>small_house_bg.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,718},{79,79}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>small_house_mask.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{79,79}</string>
+                <key>spriteSourceSize</key>
+                <string>{79,79}</string>
+                <key>textureRect</key>
+                <string>{{164,801},{79,79}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -61,9 +511,9 @@
             <key>realTextureFileName</key>
             <string>texture4.png</string>
             <key>size</key>
-            <string>{385,172}</string>
+            <string>{245,1198}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:249e312bac587e28fbceebc576e320b4:fd49db35296e5ba92fd7e8137288b260:ae5e98f36f75a7d68b54d6d237d0d710$</string>
+            <string>$TexturePacker:SmartUpdate:84a6d3b992a3ebcd3a23b213ae61f788:0b41a8247672b2bcf6693802a782021b:ae5e98f36f75a7d68b54d6d237d0d710$</string>
             <key>textureFileName</key>
             <string>texture4.png</string>
         </dict>

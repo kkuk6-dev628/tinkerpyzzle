@@ -1,3 +1,6 @@
+
+const Constants = require("Constants");
+
 cc.Class({
     extends: cc.Component,
 
@@ -29,21 +32,24 @@ cc.Class({
 
         this.initMgr();
 
+        cc.tinker = {};
+        cc.tinker.version = Constants.version;
+
         cc.vv.loading = this;
 
         /////////////////////////////////////////////////////////////////////////////
         if(cc.sys.isMobile){
             //ga.GameAnalytics.configureBuild("android 1.0.0");
-            ga.GameAnalytics.configureBuild("android 1.0");
+            ga.GameAnalytics.configureBuild(Constants.version);
             ga.GameAnalytics.setEnabledInfoLog(true);
             ga.GameAnalytics.setEnabledVerboseLog(true);
 
 
             ga.GameAnalytics.configureAvailableResourceCurrencies(["gems", "gold"]);
             ga.GameAnalytics.configureAvailableResourceItemTypes(["boost", "gold"]);
-            ga.GameAnalytics.configureAvailableCustomDimensions01(["ninja", "samurai"]);
-            ga.GameAnalytics.configureAvailableCustomDimensions02(["whale", "dolphin"]);
-            ga.GameAnalytics.configureAvailableCustomDimensions03(["horde", "alliance"]);
+            // ga.GameAnalytics.configureAvailableCustomDimensions01(["ninja", "samurai"]);
+            // ga.GameAnalytics.configureAvailableCustomDimensions02(["whale", "dolphin"]);
+            // ga.GameAnalytics.configureAvailableCustomDimensions03(["horde", "alliance"]);
 
             ga.GameAnalytics.initialize("d4ab610da008165c03e163eb57db56d5", "ba8f2fda0a16c7da87a71848d8853f9fdba5465f");
 

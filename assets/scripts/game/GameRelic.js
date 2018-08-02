@@ -259,7 +259,7 @@ cc.Class({
         for(let i in this._mapNodesArray[Constants.PickupsLayerName]){
             for(let j in this._mapNodesArray[Constants.PickupsLayerName][i]){
                 let tile = this.getFigureTile(j, i);
-                if(tile != null && tile.tileKind == Enum.TileKind.Relic){
+                if(tile !== null && tile.tileKind === Enum.TileKind.Relic){
                     tile.pickupTile();
                 }
             }

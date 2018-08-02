@@ -270,7 +270,7 @@ const Global = cc.Class({
             if(isNaN(passedLevel)){
                 passedLevel = 0;
             }
-            // return 1100;
+            //return 242;
             return passedLevel;
         },
 
@@ -284,9 +284,11 @@ const Global = cc.Class({
         },
 
         loadLevel: function (levelNumber) {
+            cc.tinker.levelNumber = levelNumber;
             const levelInfo = Global.AllLevels[levelNumber];
             // cc.info(levelNumber);
             let levelType = parseInt(levelInfo.level_type);
+            cc.tinker.levelType = levelType;
             Global.PlayingLevel = new LevelInfo();
             Global.PendingActions = 0;
             switch(levelType){

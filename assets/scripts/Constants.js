@@ -7,6 +7,8 @@ cc.Class({
 
     statics:{
 
+        version: "android 1.1.4",
+
         // item prices
         ItemPrices: {
             lamp: 60,
@@ -41,11 +43,12 @@ cc.Class({
             {x:30, y:100},
         ],
 
-        ADShowLevel: 25,
+        ADShowLevel: 100,
         ADSWatchCountPerDay: 10,
         LevelsCount: 1720,
         MaxCrushTileUnit: 1,
         MaxRunningActions: 5,
+
         // Action Tags
         TILE_MOVE_ACTION: 10001,
         TILE_HINT_ACTION: 10002,

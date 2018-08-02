@@ -1,7 +1,7 @@
 
 var __errorHandler = function (fileName, lineno, msg, stackStr) {
     if(cc.sys.isMobile){
-        ga.GameAnalytics.addErrorEvent(ga.EGAErrorSeverity.Error, `error message--- ${msg} stack trace--- ${stackStr}`);
+        ga.GameAnalytics.addErrorEvent(ga.EGAErrorSeverity.Error, `${cc.tinker.version}\nerror message\n ${msg}\nlevel-${cc.tinker.levelNumber}, level-type ${cc.tinker.levelType}\nstack trace\n${stackStr}`);
     }
 };
 

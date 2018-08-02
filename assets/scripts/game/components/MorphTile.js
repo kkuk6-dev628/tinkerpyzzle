@@ -116,7 +116,8 @@ cc.Class({
         _bonusBackup: undefined,
         _forceWayBackup: undefined,
         _bonusEffectNode:{
-
+            type: cc.Node,
+            default: null
         }
     },
 

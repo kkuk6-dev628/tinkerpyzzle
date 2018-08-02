@@ -9,8 +9,8 @@ android {
         applicationId 'chy.kkuk.tinker'
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.1.5"
 
         externalNativeBuild {
             ndkBuild {
