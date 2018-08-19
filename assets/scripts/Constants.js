@@ -53,7 +53,7 @@ cc.Class({
         TILE_MOVE_ACTION: 10001,
         TILE_HINT_ACTION: 10002,
 
-        UndefinedNotPassLevels: [5, 59, 61, 93, 104, 546, 746, 1208, 1678, 1710],
+        UndefinedNotPassLevels: [5, 59, 61, 93, 105, 548, 749, 751, 982, 1159, 1206, 1619, 1638, 1665, 1707, 1710],
 
         TeleportLoop: [1202],
 

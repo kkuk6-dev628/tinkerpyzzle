@@ -31,11 +31,14 @@ cc.Class({
 
     load: function () {
         let lamp = parseInt(cc.sys.localStorage.getItem("lamp_booster"));
-        this.availableBoosters.lamp = isNaN(lamp) ? 3 : lamp;
+        // this.availableBoosters.lamp = isNaN(lamp) ? 3 : lamp;
+        this.availableBoosters.lamp = 10;
         let line = parseInt(cc.sys.localStorage.getItem("line_booster"));
-        this.availableBoosters.line = isNaN(line) ? 3 : line;
+        // this.availableBoosters.line = isNaN(line) ? 3 : line;
+        this.availableBoosters.line = 10;
         let butterfly = parseInt(cc.sys.localStorage.getItem("butterfly_booster"));
-        this.availableBoosters.butterfly = isNaN(butterfly) ? 3 : butterfly;
+        // this.availableBoosters.butterfly = isNaN(butterfly) ? 3 : butterfly;
+        this.availableBoosters.butterfly = 10;
         let coins = parseInt(cc.sys.localStorage.getItem("coins"));
         this.coins = isNaN(coins) ? 100 : coins;
         let harts = parseInt(cc.sys.localStorage.getItem("harts"));

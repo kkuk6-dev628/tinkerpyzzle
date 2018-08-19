@@ -311,7 +311,10 @@ const FigureTile = cc.Class({
     },
 
     setVisibleSprite: function (show) {
-        this.node.getComponent(cc.Sprite).setVisible(show);
+        let sprite = this.node.getComponent(cc.Sprite);
+        if(sprite){
+            sprite.setVisible(show);
+        }
     },
     setSnake: function (snakeNode) {
         this.setSnakeState();
@@ -490,6 +493,10 @@ const FigureTile = cc.Class({
         else{
             cc.info("Figure Tile", "node is not valid!!!");
         }
+        if(this.gooBombNode){
+            this.gooBombNode.active = false;
+        }
+        this.setVisibleSprite(true);
         this.isGooBomb = false;
         this.isMilkTile = false;
         this.isPendingHole = false;

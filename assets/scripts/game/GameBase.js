@@ -4331,7 +4331,7 @@ cc.Class({
             if (this._mapNodesArray[Constants.FiguresLayerName][i]) {
                 for (let j = this._minVisibleColumn; j <= this._maxVisibleColumn; j++) {
                     if (this.isHole(j, i)) {
-                        let fallPath = this.findFallTile(j, i);
+                        let fallPath = this.findFallTileDFS(j, i);
                         if (fallPath && fallPath.length > 0) {
                             moved = true;
                             if (this.fallTileThroughPath({col: j, row: i}, fallPath)) {
@@ -4350,7 +4350,7 @@ cc.Class({
                 if (this._mapNodesArray[Constants.FiguresLayerName][row]) {
                     for (let col = this._minVisibleColumn; col <= this._maxVisibleColumn; col++) {
                         if (this.isHole(col, row)) {
-                            let fallPath = this.findFallTile(col, row);
+                            let fallPath = this.findFallTileDFS(col, row);
                             if (fallPath && fallPath.length > 0) {
                                 moved = true;
                                 if (this.fallTileThroughPath({col: col, row: row}, fallPath)) {
@@ -4483,8 +4483,12 @@ cc.Class({
             }
             let endPos = this.grid2pos(targetPos.col, targetPos.row);
             let bouncingEndAction = cc.moveTo(0.1, endPos.x, endPos.y);
+            tile.isMovable = false;
             actions.push(bouncingEndAction);
-            actions.push(cc.callFunc(this.setGameState, this));
+            actions.push(cc.callFunc(()=>{
+                this.setGameState();
+                tile.isMovable = true;
+            }));
             // let as = this._willMoveTiles.filter((el) => {
             //     return el.col === startPos.col && el.row == startPos.row;
             // });
@@ -4575,37 +4579,116 @@ cc.Class({
     isOutTile: function (col, row) {
         return !this._mapNodesArray[Constants.BackgroundLayerName][row] || !this._mapNodesArray[Constants.BackgroundLayerName][row][col];
     },
+    
+    findTeleportInCol: function (col, row) {
+        if (this._mapNodesArray[Constants.TeleportsLayerName]) {
+            for (let i = row; i >= this._minVisibleRow; i--) {
+                if(this._mapNodesArray[Constants.TeleportsLayerName][row]){
+                    let tile = this._mapNodesArray[Constants.TeleportsLayerName][row][col];
+                    if (tile && tile.value.indexOf("end") > -1) {
+                        return (tile.value.split("_").pop());
+                    }
+                }
+            }
+        }
+        return 0;
+    },
 
-    findFallTile: function (col, row) {
+    checkFallPath: function (col, row) {
+        return this.isInCurrentPage(col, row) && (this.isFallPassTile(col, row)
+        || this.isCanFall(col, row));
+    },
+
+    findFallTileDFS: function(col, row){
+        let stack = [];
+        let curCol = col, curRow = row;
+        if(this.isThereGenerator(curCol, curRow)){
+            return [{col: col, row: row}];
+        }
+        stack.push({col: curCol, row: curRow, path: []});
+        let check = [];
+        for(let i = this._minColumn; i <= this._maxColumn; i++){
+            check[i] = [];
+            for(let j = this._minRow; j <= this._maxRow; j++){
+                check[i][j] = 0;
+            }
+        }
+        let moveIndent = [
+            {col:-1, row:-1},
+            {col: 1, row:-1},
+            {col: 0, row:-1}
+        ];
+
+        while(stack.length){
+            let cell = stack.pop();
+            curCol = cell.col;
+            curRow = cell.row;
+            let curPath = cell.path;
+            if((this.isCanFall(curCol, curRow)
+                || (this.isThereGenerator(curCol, curRow) && this.isFillableTile(curCol, curRow)))
+                && curPath.length > 0){
+                return curPath;
+            }
+
+            let teleportPos = this.findTeleportRevers(curCol, curRow);
+            if(teleportPos !== null){
+                if(this.checkFallPath(teleportPos.col, teleportPos.row)
+                    && check[teleportPos.col][teleportPos.row] === 0 && !this.isContainsTile(teleportPos, curPath))
+                {
+                    let nextPath = curPath.length > 0 ? curPath.slice() : [];
+                    nextPath.push(teleportPos);
+                    stack.push({col: teleportPos.col, row: teleportPos.row, path: nextPath});
+                    check[teleportPos.col][teleportPos.row] = check[curCol][curRow] + 1;
+                }
+            }
+            else{
+                for (let indent of moveIndent){
+                    let nextCol = curCol + indent.col, nextRow = curRow + indent.row;
+
+                    if( this.checkFallPath(nextCol, nextRow)
+                        && check[nextCol][nextRow] === 0
+                        && !this.isContainsTile(nextCol, nextRow, curPath))
+                    {
+                        if(this.isOutTile(nextCol, nextRow) && indent.col !== 0){
+                            continue;
+                        }
+                        let nextPath = curPath.length > 0 ? curPath.slice() : [];
+                        if(nextPath.length > 0 && nextPath[nextPath.length - 1].col === nextCol && !nextPath[nextPath.length - 1].teleport){
+                            nextPath.pop();
+                        }
+                        nextPath.push({col: nextCol, row: nextRow});
+                        stack.push({col: nextCol, row: nextRow, path: nextPath});
+                        check[nextCol][nextRow] = check[curCol][curRow] + 1;
+                    }
+                }
+            }
+        }
+    },
+
+    findFallTile: function (col, row, teleportNumber = -1) {
+        let teleportNumberNew = teleportNumber;
         let fallPos = this.findDirectFallTile(col, row);
         let fallPath = [];
-        // if (fallPos == null) { // row == this._minVisibleRow || no generator on this col
-        //     if (this.isHole(col, row)) {
-        //         fallPos = {col: col, row: row};
-        //         if (!this.checkTeleport(col, row)) {
-        //             return [fallPos];
-        //         }
-        //     }
-        //     else {
-        //         return null;
-        //     }
-        // }
 
-        if (this.isCanFall(fallPos.col, fallPos.row)) {
+        let colTeleportNumber = this.findTeleportInCol(col, row);
+
+        if (this.isCanFall(fallPos.col, fallPos.row) && colTeleportNumber !== teleportNumberNew) {
             fallPath.push(fallPos);
             return fallPath;
         }
         else { // in the case fallPos is HOLE
             if (this._mapNodesArray[Constants.TeleportsLayerName]) {
                 let teleportPos = this.findTeleportRevers(fallPos.col, fallPos.row);
+                
                 if (teleportPos != null) {
+                    teleportNumberNew = teleportPos.teleportNumber;
                     if (this.isCanFall(teleportPos.col, teleportPos.row)) {
                         fallPath.push(fallPos);
                         fallPath.push(teleportPos);
                         return fallPath;
                     }
                     else{
-                        let newFallPath = this.findFallTile(teleportPos.col, teleportPos.row);
+                        let newFallPath = this.findFallTile(teleportPos.col, teleportPos.row, teleportNumberNew);
                         if (newFallPath && newFallPath.length > 0) {
                             fallPath.push(fallPos);
                             fallPath.push(teleportPos);
@@ -4722,7 +4805,7 @@ cc.Class({
                             j = parseInt(j);
                             if (this._mapNodesArray[Constants.TeleportsLayerName][i][j].value == "begin_" + teleportNumber) {
                                 if (this.isCanFall(j, i) || this.isFillableTile(j, i)) {
-                                    return {col: j, row: i, teleport: true};
+                                    return {col: j, row: i, teleport: true, teleportNumber: teleportNumber};
                                 }
                             }
                         }
@@ -5084,33 +5167,33 @@ cc.Class({
         }
     },
 
-    fillHoles: function () {
-        // if (this.isTherePendingActions()) {
-        //     return;
-        // }
-        for (let i in this._mapNodesArray[Constants.GeneratorsLayerName]) {
-            for (let j in this._mapNodesArray[Constants.GeneratorsLayerName][i]) {
-                let col = parseInt(j), row = parseInt(i);
-                if (this.isInCurrentPage(col, row)) {
-                    let fallenCount = 0;
-                    while (this.isFillableTile(col, row)) {
-                        this.fallNewTile(col, row, fallenCount);
-                        fallenCount++
-                    }
-                }
-            }
-        }
-        for (let i in this._mapNodesArray[Constants.FiguresLayerName][this._minVisibleRow]) {
-            let col = parseInt(i), row = this._minVisibleRow;
-            if (this.isInCurrentPage(col, row) && this.findTeleport(col, row)) {
-                let fallenCount = 0;
-                while (this.isFillableTile(col, row)) {
-                    this.fallNewTile(col, row, fallenCount);
-                    fallenCount++
-                }
-            }
-        }
-    },
+    // fillHoles: function () {
+    //     // if (this.isTherePendingActions()) {
+    //     //     return;
+    //     // }
+    //     for (let i in this._mapNodesArray[Constants.GeneratorsLayerName]) {
+    //         for (let j in this._mapNodesArray[Constants.GeneratorsLayerName][i]) {
+    //             let col = parseInt(j), row = parseInt(i);
+    //             if (this.isInCurrentPage(col, row)) {
+    //                 let fallenCount = 0;
+    //                 while (this.isFillableTile(col, row)) {
+    //                     this.fallNewTile(col, row, fallenCount);
+    //                     fallenCount++
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     for (let i in this._mapNodesArray[Constants.FiguresLayerName][this._minVisibleRow]) {
+    //         let col = parseInt(i), row = this._minVisibleRow;
+    //         if (this.isInCurrentPage(col, row) && this.findTeleport(col, row)) {
+    //             let fallenCount = 0;
+    //             while (this.isFillableTile(col, row)) {
+    //                 this.fallNewTile(col, row, fallenCount);
+    //                 fallenCount++
+    //             }
+    //         }
+    //     }
+    // },
 
     findGeneratorTile: function (col, row) {
         for (let i = row; i >= this._minVisibleRow; i--) {
@@ -5184,38 +5267,38 @@ cc.Class({
         return tile;
     },
 
-    fallNewTile: function (col, row, fallenCount) {
-        try {
-            if (!this.isFillableTile(col, row)) {
-                return false;
-            }
-            let generatorTile = this.findGeneratorTile(col, row);
-            if (generatorTile == null) {
-                if (row == this._minVisibleRow) {
-                    generatorTile = {col: col, row: row};
-                }
-                else {
-                    return false;
-                }
-            }
-
-            this.createNewTile(generatorTile.col, generatorTile.row);
-            // this.fallTileAction(pos, node);
-
-            let fallPath = this.findFallTile(col, row);
-            if (fallPath.length == 0) {
-                fallPath.push({col: col, row: row});
-            }
-            else if (fallPath[0].col != col) {
-                fallPath.unshift({col: col, row: row});
-            }
-            this.fallTileThroughPath(generatorTile, fallPath, fallenCount * Constants.FallTileTime * 0.6);
-            return true;
-        } catch (e) {
-            cc.info(e, "fallNewTile");
-            return false;
-        }
-    },
+    // fallNewTile: function (col, row, fallenCount) {
+    //     try {
+    //         if (!this.isFillableTile(col, row)) {
+    //             return false;
+    //         }
+    //         let generatorTile = this.findGeneratorTile(col, row);
+    //         if (generatorTile == null) {
+    //             if (row == this._minVisibleRow) {
+    //                 generatorTile = {col: col, row: row};
+    //             }
+    //             else {
+    //                 return false;
+    //             }
+    //         }
+    //
+    //         this.createNewTile(generatorTile.col, generatorTile.row);
+    //         // this.fallTileAction(pos, node);
+    //
+    //         let fallPath = this.findFallTileDFS(col, row);
+    //         if (fallPath.length == 0) {
+    //             fallPath.push({col: col, row: row});
+    //         }
+    //         else if (fallPath[0].col != col) {
+    //             fallPath.unshift({col: col, row: row});
+    //         }
+    //         this.fallTileThroughPath(generatorTile, fallPath, fallenCount * Constants.FallTileTime * 0.6);
+    //         return true;
+    //     } catch (e) {
+    //         cc.info(e, "fallNewTile");
+    //         return false;
+    //     }
+    // },
 
     fallTileAction: function (pos, node, fallTime) {
         // this._gameState = Enum.GameState.TileMoving;

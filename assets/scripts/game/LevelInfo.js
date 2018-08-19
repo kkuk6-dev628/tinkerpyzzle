@@ -80,7 +80,7 @@ cc.Class({
 
             self.levelType = self.customProps["level_type_1"] == 7 ? Enum.LevelTypes.Key : self.customProps["level_type"];
             self.levelType = parseInt(self.levelType);
-            self.moveNumber = self.customProps["num_moves"];
+            self.moveNumber = +self.customProps["num_moves"];
             self.score2 = parseInt(self.customProps["score_2"]);
             self.score3 = parseInt(self.customProps["score_3"]);
             self.levelDescription = self.customProps["description"];

@@ -270,8 +270,8 @@ const Global = cc.Class({
             if(isNaN(passedLevel)){
                 passedLevel = 0;
             }
-            //return 242;
-            return passedLevel;
+            return 1720;
+            // return passedLevel;
         },
 
         getStarScores: function (levelNumber) {
