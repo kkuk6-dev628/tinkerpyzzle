@@ -638,12 +638,10 @@ cc.Class({
     },
 
     afterLoadLevelMap: function () {
-        // this.addFigureNode(Constants.FiguresLayerName, 4, 2, "fig2");
-        // this.addFigureNode(Constants.FiguresLayerName, 3, 3, "fig3");
         // this.addFigureNode(Constants.FiguresLayerName, 4, 3, "fig3");
         // this.addFigureNode(Constants.FiguresLayerName, 6, 3, "fig3");
-        // this.addFigureBonusNode(4, 4, Enum.BonusTypes.Lamp);
-        // this.addFigureBonusNode(4, 3, Enum.BonusTypes.Lamp);
+        // this.addFigureBonusNode(4, 4, Enum.BonusTypes.Bomb);
+        // this.addFigureBonusNode(4, 3, Enum.BonusTypes.Square);
         this.setMapBorder();
         this._mapNodesArray.hasOwnProperty(Constants.ConveyorLayerName) && this.buildConveyors();
         this.checkMatches();
@@ -790,10 +788,15 @@ cc.Class({
                     self.showInfo('adViewWillLeaveApplication=' + name);
                 },
                 reward: function (name, currency, amount) {
-                    cc.info(name, "video ads name");
-                    cc.info(currency, "video ads currency");
-                    cc.info(amount, "video ads amount");
-                    self.addMoveNumber4Failed();
+                    if(!Global.BuyCoinVideo){
+                        self.addMoveNumber4Failed();
+                    }
+                    else{
+                        Global.UserData.coins += 25;
+                        Global.UserData.save();
+                        let coinsNode = cc.find("buy_item_popup/coins/label", self._popupsNode);
+                        coinsNode.getComponent(cc.Label).string = Global.UserData.coins;
+                    }
                 }
             });
             sdkbox.PluginAdMob.init();
@@ -2624,7 +2627,6 @@ cc.Class({
     },
 
     addRemoveBonus: function (target, params) {
-        this.removeTile(params.col, params.row);
         switch (params.bonus) {
             case Enum.BonusTypes.Bomb:
                 this.processBombArea(params.col, params.row);
@@ -2642,6 +2644,7 @@ cc.Class({
                 this.processSquareBonus(params.col, params.row);
                 break;
         }
+        this.removeTile(params.col, params.row);
     },
 
     checkMatchMove: function (from, to) {
@@ -6318,22 +6321,13 @@ cc.Class({
     },
 
     onWatchVideoClicked: function (event) {
-        let coinsCount = 25;
-        isNaN(coinsCount) && (coinsCount = 25);
-        Global.UserData.coins += coinsCount;
-        let coinsNode = cc.find("buy_item_popup/coins/label", this._popupsNode);
-        coinsNode.getComponent(cc.Label).string = Global.UserData.coins;
-        // let watchVideo = this._popupsNode.getChildByName("watch_video");
-        // watchVideo.active = true;
-        // watchVideo.runAction(cc.fadeIn(0.5));
+        Global.BuyCoinVideo = true;
         this.showRewardedVideo();
         Global.increaseVideoWatched();
         this.onBuyCoinsCloseClicked();
     },
     onWatchAdsClicked: function (event) {
-        let coinsCount = 5;
-        isNaN(coinsCount) && (coinsCount = 25);
-        Global.UserData.coins += coinsCount;
+        Global.UserData.coins += 5;
         let coinsNode = cc.find("buy_item_popup/coins/label", this._popupsNode);
         coinsNode.getComponent(cc.Label).string = Global.UserData.coins;
         // let watchVideo = this._popupsNode.getChildByName("fullscreen_ads");
@@ -6413,7 +6407,7 @@ cc.Class({
         Global.UserData.coins += coinsCount;
         Global.UserData.save();
         let priceDollar = Constants.CoinBuyUnits[coinsCount];
-        cc.info(priceDollar, "buy coins price");
+        // cc.info(priceDollar, "buy coins price");
         let coinsNode = cc.find("buy_item_popup/coins/label", this._popupsNode);
         coinsNode.getComponent(cc.Label).string = Global.UserData.coins;
         this.onBuyCoinsCloseClicked();

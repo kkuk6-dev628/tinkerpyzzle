@@ -67,6 +67,7 @@ const Global = cc.Class({
         passedLevel: 0,
         PendingActions: 0,
         PlayNext: false,
+        BuyCoinVideo: false,
 
         sendGAProgressionEvent(status, progression01, progression02, progression03){
             if(cc.sys.isMobile){
@@ -270,8 +271,8 @@ const Global = cc.Class({
             if(isNaN(passedLevel)){
                 passedLevel = 0;
             }
-            return 1720;
-            // return passedLevel;
+            // return 1720;
+            return passedLevel;
         },
 
         getStarScores: function (levelNumber) {

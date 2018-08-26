@@ -383,6 +383,14 @@ cc.Class({
                 },
                 adViewWillLeaveApplication: function(name) {
                     self.showInfo('adViewWillLeaveApplication=' + name);
+                },
+                reward: function(name){
+                    Global.BuyCoinVideo = false;
+                    Global.UserData.coins += 25;
+                    Global.UserData.save();
+                    // let priceDollar = Constants.CoinBuyUnits[coinsCount];
+                    self._coinsLabel.string = Global.UserData.coins;
+
                 }
             });
             sdkbox.PluginAdMob.init();
@@ -548,15 +556,7 @@ cc.Class({
     },
 
     onWatchVideoClicked: function (event) {
-        let coinsCount = 25;
-        isNaN(coinsCount) && (coinsCount = 25);
-        Global.UserData.coins += coinsCount;
-        // let priceDollar = Constants.CoinBuyUnits[coinsCount];
-        this._coinsLabel.string = Global.UserData.coins;
-        
-        // let watchVideo = cc.find("Canvas/root/popups/watch_video");
-        // watchVideo.active = true;
-        // watchVideo.runAction(cc.fadeIn(0.5));
+        Global.BuyCoinVideo = true;
         Global.increaseVideoWatched();
         this.showRewardedVideo();
         this.onCloseBuyCoinsClicked();
